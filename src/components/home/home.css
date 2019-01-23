@@ -1,0 +1,7 @@
+.homepage-background{
+    background-image: url('map-currencies.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 500px;
+}
