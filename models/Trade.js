@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const tradeSchema = new Schema({
-    action: {
+    Action: {
         type: String,
     },
     closePrice: {
@@ -17,13 +17,13 @@ const tradeSchema = new Schema({
     openTime: {
         type: String,
     },
-    pips: {
+    Pips: {
         type: Number,
     },
-    profit: {
+    Profit: {
         type: Number,
     },
-    symbol: {
+    Symbol: {
         type: String,
     }
 })
