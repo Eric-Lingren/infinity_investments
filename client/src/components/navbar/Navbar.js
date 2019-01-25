@@ -10,8 +10,8 @@ class Navbar extends Component {
             <div className='navbar-wrapper'>
                 <Link className='navbarTextLink' to="/"> Home </Link>
                 <Link className='navbarTextLink' to="/about"> About </Link>
-                <Link className='navbarTextLink' to="/contact"> Contact </Link>
                 <Link className='navbarTextLink' to="/performance"> Performance </Link>
+                <Link className='navbarTextLink' to="/contact"> Contact </Link>
             </div>
         )
     }

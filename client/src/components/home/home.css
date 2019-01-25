@@ -1,5 +1,5 @@
 .home-page-wrapper{
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(225, 225, 225);
     height: 100vh;
 }
 
@@ -7,8 +7,8 @@
     background-image: url('map-currencies.png');
     background-position: center;
     background-repeat: no-repeat;
-    /* background-size: cover; */
+    background-size: cover;
     width: 100%;
     height: 60vh;
-    border-bottom: 3px white solid;
+    border-bottom: 3px rgb(225, 225, 225) solid;
 }
