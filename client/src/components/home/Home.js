@@ -7,7 +7,7 @@ class Home extends Component {
 
     render(){
         return(
-            <div>
+            <div className='home-page-wrapper'>
                 <Navbar />
                 <div className='homepage-background'></div>
             </div>

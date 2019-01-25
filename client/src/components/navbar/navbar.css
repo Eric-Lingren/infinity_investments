@@ -1,9 +1,22 @@
 .navbar-wrapper{
-    background-color: skyblue;
+    background-color: rgb(58, 58, 58);
     width: 100%;
-    height: 40px;
+    height: 5vh;
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+    border-bottom: white 2px solid;
+}
+.navbarTextLink{
+    color: white;
+    text-decoration: none;
+    border-bottom: rgb(58, 58, 58) 2px solid;
+    padding: 0 5px 0 5px;
+    transition: .4s ease-in-out;
+    font-weight: 400;
+}
+.navbarTextLink:hover{
+    border-bottom: white 2px solid;
+    transition: .4s ease-in-out;
 }
