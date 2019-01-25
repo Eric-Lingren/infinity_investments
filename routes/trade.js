@@ -1,16 +1,17 @@
 const express = require('express')
 const tradesRouter = express.Router()
-const Trades = require("../models/Trade")
+const Trade = require("../models/trade")
 
 
 // Get all
 tradesRouter.get('/', (req, res, next) => {
-    Trades.find((err, trades) => {
+    console.log('trades route got hit')
+    Trade.find((err, trade) => {
         if (err) {
             res.status(500)
             return next(err)
         }
-        return res.status(200).send(trades)
+        return res.status(200).send(trade)
     })
 })
 
@@ -31,6 +32,7 @@ tradesRouter.get('/:id', (req, res, next) => {
 tradesRouter.post('/', (req, res, next) => {
     console.log('post request got hit')
     const newTrade = new Trade(req.body)
+    console.log(req.body)
     newTrade.save((err, trade) => {
         if (err) {
             res.status(500)

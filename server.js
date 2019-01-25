@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 // app.use(cors)
 
 //Routes
-// app.use('/plants', require('./routes/plant'))
+app.use('/trades', require('./routes/trade'))
 
 // Mongoose Connect
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tradeHistory', {useNewUrlParser: true}, () => {
