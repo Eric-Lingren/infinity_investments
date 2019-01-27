@@ -29,7 +29,12 @@ class TradeHistoryProvider extends Component {
 
     getTrades = () => {
         axios.get(`/trades`).then(response => {
-            console.log(response.data)
+            let data = response.data
+            //console.log(data)
+            data.forEach(element => {
+                console.log(element)
+                
+            });
         })
     }
 
