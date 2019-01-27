@@ -17,7 +17,7 @@ class Performance extends Component {
 
 
     render(){
-        //console.log(this.props.trades)
+        console.log(this.props.trades)
         return(
             <div>
                 <Navbar />
