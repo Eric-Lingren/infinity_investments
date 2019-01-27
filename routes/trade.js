@@ -5,14 +5,12 @@ const Trade = require("../models/Trade")
 
 // Get all
 tradesRouter.get('/', (req, res, next) => {
-    console.log('trades route got hit')
+    console.log('get all route got hit')
     Trade.find((err, trade) => {
-        console.log("Hello")
         if (err) {
             res.status(500)
             return next(err)
         }
-        console.log(trade)
         return res.status(200).send(trade)
     })
 })

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../navbar/Navbar';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
+// import axios from 'axios'
 
 class Performance extends Component {
     constructor(props){
@@ -9,9 +10,14 @@ class Performance extends Component {
 
         }
     }
+    
+    componentDidMount(){
+        this.props.getTrades()
+    }
 
 
     render(){
+        //console.log(this.props.trades)
         return(
             <div>
                 <Navbar />
