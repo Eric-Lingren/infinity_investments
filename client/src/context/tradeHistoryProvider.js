@@ -13,6 +13,7 @@ class TradeHistoryProvider extends Component {
             demoAccountId: '',
             trades: [],
             symbolsTraded: [],
+            symbolsTradesCount: [],
         }
     }
 
@@ -49,8 +50,24 @@ class TradeHistoryProvider extends Component {
                 symbolsTraded:  [...prevState.symbolsTraded, trade.Symbol]
             }))
         })
-        console.log(this.state.symbolsTraded)
+        
+        let symbols = this.state.symbolsTraded
+        let count = symbols.reduce(function(r, e) {
+            // if(!r[e]) r[e] = {[e]: 1}
+            // else r[e][e] += 1
+            // console.log(r)
+            // return r;
+            if(!r[e]) r[e] = {'symbol': e, 'total': 1}
+            else r[e].total += 1
+            return r;
 
+        }, {})
+        var result = Object.keys(count).map(e => count[e])
+        console.log(result)
+
+        this.setState({
+            symbolsTradesCount: result
+        })
     }
 
     render(){
@@ -61,6 +78,7 @@ class TradeHistoryProvider extends Component {
                     accounts: this.state.accounts,
                     trades: this.state.trades,
                     getTrades: this.getTrades,
+                    symbolsTradesCount: this.state.symbolsTradesCount
                 }}>
                 { this.props.children }
             </TradeHistoryContext.Provider>
