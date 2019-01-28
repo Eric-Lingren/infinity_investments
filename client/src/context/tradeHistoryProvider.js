@@ -12,6 +12,7 @@ class TradeHistoryProvider extends Component {
             liveAccountId: '',
             demoAccountId: '',
             trades: [],
+            symbolsTraded: [],
         }
     }
 
@@ -37,9 +38,20 @@ class TradeHistoryProvider extends Component {
                     }))
                 }
             });
+            this.calculatePairs()
         })
     }
 
+    calculatePairs = () => {
+        let allTrades = this.state.trades;
+        allTrades.forEach(trade => {
+            this.setState(prevState => ({
+                symbolsTraded:  [...prevState.symbolsTraded, trade.Symbol]
+            }))
+        })
+        console.log(this.state.symbolsTraded)
+
+    }
 
     render(){
         return (
