@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from '../navbar/Navbar';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
-import * as d3 from "d3"
-import './performance.css'
+import * as d3 from "d3";
+import './performance.css';
+import BubbleChart from '../bubbleChart/BubbleChart'
 
 class Performance extends Component {
     constructor(props){
@@ -139,6 +140,7 @@ class Performance extends Component {
                 <h1>Lets put a chart here</h1>
                 {/* <div className='chart'></div> */}
                 <svg className='svg-container' width='800' height='300'></svg>
+                <BubbleChart />
             </div>
         )
     }
