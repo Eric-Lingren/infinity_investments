@@ -125,7 +125,7 @@ class Performance extends Component {
                 return "translate(" + label.centroid(d) + ")"; 
             })
             .attr("text-anchor", "middle")
-            .text(function(d) { return d.data.symbol+":"+d.data.total+"%"; });
+            .text(function(d) { return d.data.symbol+":"+d.data.total; });
 
     }
 
