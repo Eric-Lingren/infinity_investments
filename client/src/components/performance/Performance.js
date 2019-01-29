@@ -9,18 +9,18 @@ class Performance extends Component {
     constructor(props){
         super(props)
         this.state = {
-            data: [{'one' : 30}, {'one' : 86}, 168, 281, 303, 365 ]
+            //data: [{'one' : 30}, {'one' : 86}, 168, 281, 303, 365 ]
         }
     }
     
     componentDidMount(){
-        this.props.getTrades()
+        //this.props.getTrades()
         
     }
 
 
 
-    draw = () => {
+    //draw = () => {
         
 
         // var dataset = [80, 100, 56, 120, 180, 30, 40, 120, 160];
@@ -87,59 +87,59 @@ class Performance extends Component {
         //     .attr("fill", "#A64C38");
 
 
-        var data = this.props.symbolsTradesCount
+    //     var data = this.props.symbolsTradesCount
 
-        var svgWidth = 500, svgHeight = 300, radius =  Math.min(svgWidth, svgHeight) / 2;
-        var svg = d3.select('svg')
-            .attr("width", svgWidth)
-            .attr("height", svgHeight);
+    //     var svgWidth = 500, svgHeight = 300, radius =  Math.min(svgWidth, svgHeight) / 2;
+    //     var svg = d3.select('svg')
+    //         .attr("width", svgWidth)
+    //         .attr("height", svgHeight);
 
-        //Create group element to hold pie chart    
-        var g = svg.append("g")
-            .attr("transform", "translate(" + radius + "," + radius + ")") ;
+    //     //Create group element to hold pie chart    
+    //     var g = svg.append("g")
+    //         .attr("transform", "translate(" + radius + "," + radius + ")") ;
 
-        var color = d3.scaleOrdinal(d3.schemeCategory10);
+    //     var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-        var pie = d3.pie().value(function(d) { 
-            return d.total; 
-        });
+    //     var pie = d3.pie().value(function(d) { 
+    //         return d.total; 
+    //     });
 
-        var path = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(0);
+    //     var path = d3.arc()
+    //         .outerRadius(radius)
+    //         .innerRadius(0);
         
-        var arc = g.selectAll("arc")
-            .data(pie(data))
-            .enter()
-            .append("g");
+    //     var arc = g.selectAll("arc")
+    //         .data(pie(data))
+    //         .enter()
+    //         .append("g");
 
-        arc.append("path")
-            .attr("d", path)
-            .attr("fill", function(d) { return color(d.data.total); });
+    //     arc.append("path")
+    //         .attr("d", path)
+    //         .attr("fill", function(d) { return color(d.data.total); });
                 
-        var label = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(0);
+    //     var label = d3.arc()
+    //         .outerRadius(radius)
+    //         .innerRadius(0);
                     
-        arc.append("text")
-            .attr("transform", function(d) { 
-                return "translate(" + label.centroid(d) + ")"; 
-            })
-            .attr("text-anchor", "middle")
-            .text(function(d) { return d.data.symbol+":"+d.data.total; });
+    //     arc.append("text")
+    //         .attr("transform", function(d) { 
+    //             return "translate(" + label.centroid(d) + ")"; 
+    //         })
+    //         .attr("text-anchor", "middle")
+    //         .text(function(d) { return d.data.symbol+":"+d.data.total; });
 
-    }
+    // }
 
     render(){
         //console.log(this.props.trades)
-        this.draw()
+        //this.draw()
 
         return(
             <div>
                 <Navbar />
-                <h1>Lets put a chart here</h1>
+                {/* <h1>Lets put a chart here</h1> */}
                 {/* <div className='chart'></div> */}
-                <svg className='svg-container' width='800' height='300'></svg>
+                {/* <svg className='svg-container' width='800' height='300'></svg> */}
                 <BubbleChart />
             </div>
         )
