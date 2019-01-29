@@ -25,14 +25,14 @@ class BubbleChart extends Component {
             .append('g')
             .attr('transform', 'translate(0,0)')
 
-        function ready ( error, datapoints) {
+        // function ready ( error, datapoints) {
             let circles = svg.selectAll('.tradePairs')
-                .data(datapoints)
+                .data(this.props.symbolsTradesCount)
                 .enter().append('circle')
                 .attr('class', '.tradePairs')
                 .attr('r', 10)
                 .attr('fill', 'lightblue')
-        }
+        //}
     }
 
     render(){
