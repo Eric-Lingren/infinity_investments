@@ -22,10 +22,8 @@ class BubbleChart extends Component {
         let height = 500;
 
         let chart = d3.select(node)
-            //.append('svg')
             .attr('height', height)
             .attr('width', width)
-            //.append('g')
             .attr('transform', 'translate(0,0)')
 
         var radiusScale = d3.scaleSqrt().domain([1, 50]).range([10, 80])
@@ -33,9 +31,19 @@ class BubbleChart extends Component {
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
             .force('y', d3.forceY(height / 2).strength(0.05))
-            .force('collide', d3.forceCollide(45))
+            .force('collide', d3.forceCollide(function(d){
+                return radiusScale(d.total + 1)
+            }))
 
         //function ready (error, datapoints) {
+
+        var text = chart.selectAll("text")
+            .data(this.props.symbolsTradesCount)
+            .enter()
+            .append("text")
+            .text(function(d) {
+                return d.symbol;
+            })
 
         let circles = chart.selectAll('circle')
             .data(this.props.symbolsTradesCount)
