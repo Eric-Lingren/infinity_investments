@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../navbar/Navbar';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
-import * as d3 from "d3";
+//import * as d3 from "d3";
 import './performance.css';
 import BubbleChart from '../bubbleChart/BubbleChart'
 

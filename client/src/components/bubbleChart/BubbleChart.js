@@ -37,22 +37,37 @@ class BubbleChart extends Component {
 
         //function ready (error, datapoints) {
 
-        var text = chart.selectAll("text")
+        // var text = chart.selectAll("text")
+        //     .data(this.props.symbolsTradesCount)
+        //     .enter()
+        //     .append("text")
+        //     .text(function(d) {
+        //         return d.symbol;
+        //     })
+
+        let texts = chart.selectAll(null)
             .data(this.props.symbolsTradesCount)
             .enter()
-            .append("text")
-            .text(function(d) {
-                return d.symbol;
-            })
+            .append('text')
+            .text(this.props.symbolsTradesCount)
+            .attr('color', 'black')
+            .attr('font-size', 15)
 
         let circles = chart.selectAll('circle')
             .data(this.props.symbolsTradesCount)
             .enter().append('circle')
             .attr('class', '.tradePairs')
+            //.attr('text', this.props.symbolsTradesCount.symbol)
             .attr('r', function(d){
                 return radiusScale(d.total)
             })
-            .attr('fill', 'lightblue')
+            //.attr('fill', 'lightblue')
+            .style("fill",function() {
+                return "hsl(" + Math.random() * 360 + ",60%,50%)";
+                })
+            .on('click', function(d){
+                console.log(d)
+            })
 
         simulation.nodes(this.props.symbolsTradesCount)
             .on('tick', ticked)
@@ -65,6 +80,12 @@ class BubbleChart extends Component {
                 .attr('cy', function(d){
                     return d.y
                 })
+            // texts.attr('x', (d) => {
+            //         return d.x
+            //     })
+            //     .attr('y', (d) => {
+            //         return d.y
+            //     });
         }
         // }
         // ready()
