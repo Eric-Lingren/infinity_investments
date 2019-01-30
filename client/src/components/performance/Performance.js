@@ -136,7 +136,7 @@ class Performance extends Component {
 
         return(
             <div>
-                <Navbar />
+                {/* <Navbar /> */}
                 {/* <h1>Lets put a chart here</h1> */}
                 {/* <div className='chart'></div> */}
                 {/* <svg className='svg-container' width='800' height='300'></svg> */}
