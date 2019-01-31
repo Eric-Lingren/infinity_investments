@@ -14,6 +14,7 @@ class TradeHistoryProvider extends Component {
             trades: [],
             symbolsTraded: [],
             symbolsTradesCount: [],
+            totalTrades: [0],
         }
     }
 
@@ -47,23 +48,20 @@ class TradeHistoryProvider extends Component {
         let allTrades = this.state.trades;
         allTrades.forEach(trade => {
             this.setState(prevState => ({
-                symbolsTraded:  [...prevState.symbolsTraded, trade.Symbol]
+                symbolsTraded:  [...prevState.symbolsTraded, trade.Symbol],
+                totalTrades: [allTrades.length]
             }))
         })
         
         let symbols = this.state.symbolsTraded
         let count = symbols.reduce(function(r, e) {
-            // if(!r[e]) r[e] = {[e]: 1}
-            // else r[e][e] += 1
-            // console.log(r)
-            // return r;
             if(!r[e]) r[e] = {'symbol': e, 'total': 1}
             else r[e].total += 1
             return r;
 
         }, {})
         var result = Object.keys(count).map(e => count[e])
-        console.log(result)
+        //console.log(result)
 
         this.setState({
             symbolsTradesCount: result
@@ -78,7 +76,8 @@ class TradeHistoryProvider extends Component {
                     accounts: this.state.accounts,
                     trades: this.state.trades,
                     getTrades: this.getTrades,
-                    symbolsTradesCount: this.state.symbolsTradesCount
+                    symbolsTradesCount: this.state.symbolsTradesCount,
+                    totalTrades: this.state.totalTrades,
                 }}>
                 { this.props.children }
             </TradeHistoryContext.Provider>

@@ -3,7 +3,8 @@ import Navbar from '../navbar/Navbar';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 //import * as d3 from "d3";
 import './performance.css';
-import BubbleChart from '../bubbleChart/BubbleChart'
+import BubbleChartCurrencyQuantity from '../BubbleChartCurrencyQuantity/BubbleChartCurrencyQuantity'
+import BubbleChartTotalTrades from '../BubbleChartTotalTrades/BubbleChartTotalTrades'
 
 class Performance extends Component {
     constructor(props){
@@ -136,11 +137,12 @@ class Performance extends Component {
 
         return(
             <div>
-                {/* <Navbar /> */}
+                <Navbar />
                 {/* <h1>Lets put a chart here</h1> */}
                 {/* <div className='chart'></div> */}
                 {/* <svg className='svg-container' width='800' height='300'></svg> */}
-                <BubbleChart />
+                {/* <BubbleChartCurrencyQuantity /> */}
+                <BubbleChartTotalTrades />
             </div>
         )
     }
