@@ -132,9 +132,6 @@ class Performance extends Component {
     // }
 
     render(){
-        //console.log(this.props.trades)
-        //this.draw()
-
         return(
             <div>
                 <Navbar />
@@ -142,7 +139,12 @@ class Performance extends Component {
                 {/* <div className='chart'></div> */}
                 {/* <svg className='svg-container' width='800' height='300'></svg> */}
                 {/* <BubbleChartCurrencyQuantity /> */}
-                <BubbleChartTotalTrades />
+                { this.props.showBubbleChartCurrencyQuantity 
+                ? 
+                    <BubbleChartCurrencyQuantity /> 
+                :
+                    <BubbleChartTotalTrades /> }
+                
             </div>
         )
     }

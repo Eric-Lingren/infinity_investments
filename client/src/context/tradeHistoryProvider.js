@@ -64,7 +64,6 @@ class TradeHistoryProvider extends Component {
 
         }, {})
         var result = Object.keys(count).map(e => count[e])
-        //console.log(result)
 
         this.setState({
             symbolsTradesCount: result
@@ -72,7 +71,10 @@ class TradeHistoryProvider extends Component {
     }
 
     toggleChartFromTotalTradesToCurrencyTotals = () => {
-
+        this.setState({
+            showBubbleChartTotalTrades: false,
+            showBubbleChartCurrencyQuantity: true,
+        })
     }
 
     render(){

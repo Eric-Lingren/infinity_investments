@@ -18,8 +18,8 @@ class BubbleChart extends Component {
 
     draw = () => {
         const node = this.node
-        let width = 1200;
-        let height = 500;
+        let width = window.innerWidth;
+        let height = window.innerHeight;
 
         let chart = d3.select(node)
             .attr('height', height)
@@ -35,10 +35,6 @@ class BubbleChart extends Component {
                 return radiusScale(d.total + 1)
             }))
 
-        //function ready (error, datapoints) {
-
-        
-
         let circles = chart.selectAll('circle')
             .data(this.props.symbolsTradesCount)
             .enter().append('circle')
@@ -53,7 +49,18 @@ class BubbleChart extends Component {
                 console.log(d)
             })
             .on('mouseover', function(d){
-                //console.log(this)
+                d3.select(this)
+                .transition()
+                .attr('r', function(d){
+                    return radiusScale(d.total *.4)
+                })
+            })
+            .on('mouseout', function(d){
+                d3.select(this)
+                .transition()
+                .attr('r', function(d){
+                    return radiusScale(d.total *.32)
+                })
             })
 
         var text = chart.selectAll("text")

@@ -15,12 +15,10 @@ class BubbleChart extends Component {
     }
 
     draw = (props) => {
-        
         const myProps =  this.props
-        //console.log(myProps)
         const node = this.node
         let width = window.innerWidth;
-        let height = 500;
+        let height = window.innerHeight;
 
         let chart = d3.select(node)
             .attr('height', height)
@@ -48,7 +46,7 @@ class BubbleChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                console.log(myProps)
+                myProps.toggleChartFromTotalTradesToCurrencyTotals()
             })
             .on('mouseover', function(d){
                 d3.select(this)
