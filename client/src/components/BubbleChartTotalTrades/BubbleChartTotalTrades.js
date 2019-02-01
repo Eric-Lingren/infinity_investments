@@ -14,10 +14,10 @@ class BubbleChart extends Component {
         this.props.getTrades()
     }
 
-    
-
-    draw = () => {
-        console.log(this.props.totalTrades)
+    draw = (props) => {
+        
+        const myProps =  this.props
+        //console.log(myProps)
         const node = this.node
         let width = window.innerWidth;
         let height = 500;
@@ -28,6 +28,7 @@ class BubbleChart extends Component {
             .attr('transform', 'translate(0,0)')
 
         var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 100])
+        var radiusScale2 = d3.scaleSqrt().domain([1, 100]).range([20, 110]) 
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
@@ -40,7 +41,6 @@ class BubbleChart extends Component {
         let circles = chart.selectAll('circle')
             .data(this.state.testData)
             .enter().append('circle')
-            //.attr('class', '.tradePairs')
             .attr('r', function(d){
                 return radiusScale(d)
             })
@@ -48,25 +48,29 @@ class BubbleChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                console.log(this)
+                console.log(myProps)
             })
             .on('mouseover', function(d){
                 d3.select(this)
                 .transition()
-                .attr('r', radiusScale * 1.1);
+                .attr('r', radiusScale2);
+            })
+            .on('mouseout', function(d){
+                d3.select(this)
+                .transition()
+                .attr('r', radiusScale);
             })
 
-        // var text = chart.selectAll("text")
-        //     .data(this.props.totalTrades)
-        //     .enter()
-        //     .append("text");
+        var text = chart.selectAll("text")
+            .data(this.state.testData)
+            .enter()
+            .append("text");
 
-        // var textLabels = text
-        //     .text( function (d) { return `hi`; })
-        //     .attr("font-family", "sans-serif")
-        //     .attr("font-size", "20px")
-        //     .attr("font-weight", "bold")
-        //     .attr('font-size', 15)
+        var textLabels = text
+            .text( function (d) {return `Total Trades: ${d}`})
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "25px")
+            .attr("font-weight", "bold")
 
         simulation.nodes(this.props.symbolsTradesCount)
             .on('tick', ticked)
@@ -79,19 +83,18 @@ class BubbleChart extends Component {
                 .attr('cy', function(d){
                     return height / 2
                 })
-            // textLabels
-            //     .attr('x', function(d){
-            //         return d.x - 30
-            //     })
-            //     .attr('y', function(d){
-            //         return d.y + 5
-            //     })
+            textLabels
+                .attr('x', function(d){
+                    return ((width / 2) - 100)
+                })
+                .attr('y', function(d){
+                    return  ((height / 2) + 12)
+                })
         }
     }
 
     render(){
         this.draw()
-        console.log(this.props.totalTrades)
         return(
             <div>
                 <div >

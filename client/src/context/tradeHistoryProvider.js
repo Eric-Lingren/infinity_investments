@@ -15,6 +15,9 @@ class TradeHistoryProvider extends Component {
             symbolsTraded: [],
             symbolsTradesCount: [],
             totalTrades: [0],
+            showBubbleChartTotalTrades: true,
+            showBubbleChartCurrencyQuantity: false,
+
         }
     }
 
@@ -68,6 +71,10 @@ class TradeHistoryProvider extends Component {
         })
     }
 
+    toggleChartFromTotalTradesToCurrencyTotals = () => {
+
+    }
+
     render(){
         return (
             <TradeHistoryContext.Provider 
@@ -78,6 +85,9 @@ class TradeHistoryProvider extends Component {
                     getTrades: this.getTrades,
                     symbolsTradesCount: this.state.symbolsTradesCount,
                     totalTrades: this.state.totalTrades,
+                    showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
+                    showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
+                    toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
                 }}>
                 { this.props.children }
             </TradeHistoryContext.Provider>
