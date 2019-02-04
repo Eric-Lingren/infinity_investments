@@ -15,6 +15,13 @@ class BubbleChart extends Component {
         this.props.getTrades()
     }
 
+    // shouldComponentUpdate(nextProps){
+    //     if(nextProps.symbolsTradesCount >= 100){
+    //         return true
+    //     } else {
+    //         return false
+    //     }
+    // }
 
     draw = () => {
         const node = this.node
@@ -32,7 +39,7 @@ class BubbleChart extends Component {
             .force('x', d3.forceX(width / 2).strength(0.05))
             .force('y', d3.forceY(height / 2).strength(0.05))
             .force('collide', d3.forceCollide(function(d){
-                return radiusScale(d.total + 1)
+                return radiusScale(d.total /2 )
             }))
 
         let circles = chart.selectAll('circle')
@@ -98,6 +105,7 @@ class BubbleChart extends Component {
     }
 
     render(){
+        console.log("WTF"      )
         this.draw()
         return(
             <div>
