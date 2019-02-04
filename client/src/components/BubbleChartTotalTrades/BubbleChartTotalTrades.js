@@ -18,7 +18,7 @@ class BubbleChart extends Component {
         const myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
-        let height = window.innerHeight;
+        let height = window.innerHeight - 50;
 
         let chart = d3.select(node)
             .attr('height', height)

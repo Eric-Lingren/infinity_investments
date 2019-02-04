@@ -23,10 +23,10 @@ class BubbleChart extends Component {
     //     }
     // }
 
-    draw = () => {
+    drawChart = () => {
         const node = this.node
         let width = window.innerWidth;
-        let height = window.innerHeight -150;
+        let height = window.innerHeight -50;
 
         let chart = d3.select(node)
             .attr('height', height)
@@ -79,7 +79,7 @@ class BubbleChart extends Component {
 
 
         var textLabels = text
-            .text( function (d) {{ return `${d.symbol}`; }})
+            .text( function (d) {{ return `${d.symbol}: ${d.total}`; }})
             .attr("font-family", "sans-serif")
             .attr("font-size", "20px")
             .attr("font-weight", "bold")
@@ -98,7 +98,7 @@ class BubbleChart extends Component {
                 })
             textLabels
                 .attr('x', function(d){
-                    return d.x - 30
+                    return d.x - 40
                 })
                 .attr('y', function(d){
                     return d.y + 5
@@ -108,7 +108,7 @@ class BubbleChart extends Component {
 
     render(){
         console.log("WTF"      )
-        this.draw()
+        this.drawChart()
         return(
             <div>
                 <div >
