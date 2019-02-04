@@ -52,6 +52,7 @@ class BubbleChart extends Component {
                 d3.select(this)
                 .transition()
                 .attr('r', radiusScale2);
+                d3.select(this).style("cursor", "pointer"); 
             })
             .on('mouseout', function(d){
                 d3.select(this)

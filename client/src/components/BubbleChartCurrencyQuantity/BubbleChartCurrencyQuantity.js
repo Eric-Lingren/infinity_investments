@@ -26,7 +26,7 @@ class BubbleChart extends Component {
     draw = () => {
         const node = this.node
         let width = window.innerWidth;
-        let height = window.innerHeight;
+        let height = window.innerHeight -150;
 
         let chart = d3.select(node)
             .attr('height', height)
@@ -39,7 +39,7 @@ class BubbleChart extends Component {
             .force('x', d3.forceX(width / 2).strength(0.05))
             .force('y', d3.forceY(height / 2).strength(0.05))
             .force('collide', d3.forceCollide(function(d){
-                return radiusScale(d.total /2 )
+                return radiusScale((d.total / 2) -1 )
             }))
 
         let circles = chart.selectAll('circle')
@@ -61,6 +61,8 @@ class BubbleChart extends Component {
                 .attr('r', function(d){
                     return radiusScale(d.total *.4)
                 })
+                d3.select(this).style("cursor", "pointer"); 
+
             })
             .on('mouseout', function(d){
                 d3.select(this)

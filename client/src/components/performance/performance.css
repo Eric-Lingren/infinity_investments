@@ -9,3 +9,10 @@
 .svg-container{
     margin: 50px;
 }
+.reset-data-button-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 10px;
+}

@@ -70,10 +70,23 @@ class TradeHistoryProvider extends Component {
         })
     }
 
+    resetChartToDefault = () => {
+        console.log('props reset ran')
+        this.setState({
+            showBubbleChartCurrencyQuantity: false,
+            showBubbleChartTotalTrades: false,
+            trades: [],
+            symbolsTraded: [],
+            symbolsTradesCount: [],
+            totalTrades: [0],
+        })
+    }
+
     toggleChartFromTotalTradesToCurrencyTotals = () => {
         this.setState({
             showBubbleChartTotalTrades: false,
             showBubbleChartCurrencyQuantity: true,
+            
         })
     }
 
@@ -90,6 +103,7 @@ class TradeHistoryProvider extends Component {
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
                     toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
+                    resetChartToDefault: this. resetChartToDefault,
                 }}>
                 { this.props.children }
             </TradeHistoryContext.Provider>

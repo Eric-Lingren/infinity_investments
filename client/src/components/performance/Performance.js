@@ -131,6 +131,11 @@ class Performance extends Component {
 
     // }
 
+    resetBubbleChartstoStart = () => {
+        console.log('button was clicked')
+        this.props.resetChartToDefault()
+    }
+    
     render(){
         return(
             <div>
@@ -139,6 +144,10 @@ class Performance extends Component {
                 {/* <div className='chart'></div> */}
                 {/* <svg className='svg-container' width='800' height='300'></svg> */}
                 {/* <BubbleChartCurrencyQuantity /> */}
+                <div className='reset-data-button-container'>
+                    <button onClick={this.resetBubbleChartstoStart}>Reset Data</button>
+                </div>
+                
                 { this.props.showBubbleChartCurrencyQuantity 
                 ? 
                     <BubbleChartCurrencyQuantity /> 
