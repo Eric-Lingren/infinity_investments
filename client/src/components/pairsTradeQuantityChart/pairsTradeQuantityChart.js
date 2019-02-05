@@ -3,16 +3,17 @@ import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
 import './BubbleChartCurrencyQuantity.css'
 
-class BubbleChart extends Component {
+class pairsTradeQuantityChart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            data: [1,2,3]
         }
     }
     
     componentDidMount(){
-        this.props.getTrades()
+        Promise.resolve(this.props.getTrades()).then(res =>{
+            //this.drawPairsTradeQuantityChart()
+        })
     }
 
     // shouldComponentUpdate(nextProps){
@@ -23,7 +24,7 @@ class BubbleChart extends Component {
     //     }
     // }
 
-    drawChart = () => {
+    drawPairsTradeQuantityChart = () => {
         const node = this.node
         let width = window.innerWidth;
         let height = window.innerHeight -50;
@@ -50,7 +51,7 @@ class BubbleChart extends Component {
                 return radiusScale(d.total)
             })
             .style("fill",function() {
-                return "hsl(" + Math.random() * 360 + ",60%,50%)";
+                return "hsl(" + Math.random() * 360 + ",50%,60%)";
                 })
             .on('click', function(d){
                 console.log(d)
@@ -107,8 +108,8 @@ class BubbleChart extends Component {
     }
 
     render(){
-        console.log("WTF"      )
-        this.drawChart()
+        console.log("WTF - How Many Renders????")
+        this.drawPairsTradeQuantityChart()
         return(
             <div>
                 <div >
@@ -120,4 +121,4 @@ class BubbleChart extends Component {
 
 }
 
-export default withTradeHistory(BubbleChart)
+export default withTradeHistory(pairsTradeQuantityChart)

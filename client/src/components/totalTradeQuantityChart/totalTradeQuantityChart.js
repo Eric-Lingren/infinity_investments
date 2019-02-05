@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
 
-class BubbleChart extends Component {
+class TotalTradeQuantityChart extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -11,10 +11,12 @@ class BubbleChart extends Component {
     }
     
     componentDidMount(){
-        this.props.getTrades()
+        Promise.resolve(this.props.getTrades()).then(res =>{
+            this.drawTotalTradeQuantityChart()
+        })
     }
 
-    draw = (props) => {
+    drawTotalTradeQuantityChart = (props) => {
         const myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
@@ -93,7 +95,7 @@ class BubbleChart extends Component {
     }
 
     render(){
-        this.draw()
+        //this.draw()
         return(
             <div>
                 <div >
@@ -105,4 +107,4 @@ class BubbleChart extends Component {
 
 }
 
-export default withTradeHistory(BubbleChart)
+export default withTradeHistory(TotalTradeQuantityChart)
