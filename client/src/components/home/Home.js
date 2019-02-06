@@ -15,7 +15,8 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className='home-content-container'>
-                    <h3 className='home-content-text'>Infinity Investements provides portfolio diversity and agressive growth through automated robotic trading algorithms.</h3>
+                    <h3 className='home-content-text'>Infinity Investments provides portfolio diversity and aggressive growth through automated robotic trading algorithms.</h3>
+                    <h3 className='home-content-text'>We have more than 2 years of verifiable data with over 2000 trades being executed. </h3>
                     <h3 className='home-content-text'>Take a look at our <Link className='home-content-link' to="/performance"> performance results </Link> to see what automated trading can do for you!</h3>
                 </div>
             </div>
