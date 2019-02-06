@@ -6,7 +6,8 @@
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
-    border-bottom: rgb(225, 225, 225) 2px solid;
+    border-top: rgb(0,0,0) 2px solid;
+    border-bottom: rgb(0,0,0) 2px solid;
 }
 .navbarTextLink{
     color: black;

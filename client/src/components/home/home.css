@@ -11,4 +11,87 @@
     width: 100%;
     height: 60vh;
     border-bottom: 3px rgb(225, 225, 225) solid;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.title-container{
+    background-color: rgba(0,0,0,0.6);
+    -webkit-box-shadow: 2px 2px 18px 8px rgba(255,255,255,1);
+    -moz-box-shadow: 2px 2px 18px 8px rgba(255,255,255,1);
+    box-shadow: 2px 2px 18px 8px rgba(255,255,255,1);
+    padding-bottom: 1px;
+    width: 60%;
+    border-radius: 20px;
+    opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+    
+}
+.title-header{
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-size: 5vw;
+}
+.subtitle-header{
+    color: white;
+    text-align: center;
+    font-size: 2.5vw;
+}
+.home-content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.home-content-text{
+    font-size: 1.5vw;
+    text-align: center;
+    width: 90%;
+}
+.home-content-link{
+    font-size: 1em;
+    color: black;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .title-container{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .home-content-text{
+        font-size: 3vw;
+    }
+}
+@media only screen and (max-width: 430px) {
+    .home-content-text{
+        font-size: 4vw;
+    }
+    .title-container{
+        width: 90%;
+        border-radius: 10px;
+    }
+    .title-header{
+        font-size: 6vw;
+    }
+    .subtitle-header{
+        font-size: 3vw;
+    }
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
