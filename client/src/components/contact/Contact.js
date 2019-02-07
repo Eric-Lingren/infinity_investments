@@ -24,21 +24,22 @@ class Contact extends Component {
             subject: subject,
             messsage: message
         }
-
+        
         axios.post(`/sendEmail`, data).then(response => {
-            if (response.data.msg === 'success'){
+            if (response.status === 201){
                 console.log(response)
                 alert("Message Sent."); 
-                this.resetForm()
-            } else if (response.data.msg === 'fail'){
-                console.log(response)
+                document.getElementById('name').value = ''
+                document.getElementById('email').value = ''
+                document.getElementById('subject').value = ''
+                document.getElementById('message').value = ''
+            } else if (response.status === 500){
                 alert("Message failed to send.")
             }
         })
-        .catch(err => console.log(err.response.data.errMsg))
-
-        
+        .catch(err => console.log(err))
     }
+
 
     render(){
         return(
