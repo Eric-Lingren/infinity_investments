@@ -67,19 +67,25 @@ class About extends Component {
         return(
             <div>
                 <Navbar />
-                {this.state.shuffledImages.map((picture,index) => <div 
-                                                className='money-image' 
-                                                key={index}
-                                                style={{  backgroundImage: "url(" + picture + ")",
-                                                backgroundPosition: 'center',
-                                                backgroundSize: 'cover',
-                                                backgroundRepeat: 'no-repeat',}}
-                                                id = {"imageId" + index}
-                                                onMouseOver={() => this.showImage("imageId" + index)}
-                                                onMouseOut={() => this.hideImage("imageId" + index)}
-                                                >
-                                                </div>
-                                            )}
+                <div className='content-container'>
+                <h1 className='page-header'>Content here</h1>
+                    <div className='grid-container'>
+                        {this.state.shuffledImages.map((picture,index) => <div 
+                                                        className={`money-image ${index % 2 === 1 ? "odd-image" : "even-image"}`} 
+                                                        key={index}
+
+                                                        style={{  backgroundImage: "url(" + picture + ")",
+                                                        backgroundPosition: 'center',
+                                                        backgroundSize: 'cover',
+                                                        backgroundRepeat: 'no-repeat',}}
+                                                        id = {"imageId" + index}
+                                                        onMouseOver={() => this.showImage("imageId" + index)}
+                                                        onMouseOut={() => this.hideImage("imageId" + index)}
+                                                        >
+                                                        </div>
+                                                    )}
+                    </div>
+                </div>
             </div>
         )
     }
