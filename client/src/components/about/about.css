@@ -1,9 +1,52 @@
 .content-container{
     position: relative;
     display: flex;
+    flex-direction: column;
 }
 .page-header{
     z-index: 5;
+    text-align: center;
+    text-decoration: underline;
+}
+.text-section-left{
+    z-index: 5;
+    position: relative;
+    left: 6%;
+    margin: 0px 0px 80px 0px;
+    width: 60%;
+    border: 2px solid #fff;
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 13px 32px -11px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 13px 32px -11px rgba(0,0,0,0.75);
+    box-shadow: 10px 13px 32px -11px rgba(0,0,0,0.75);
+    background-color: #3b80d1;
+    color: #fff;
+}
+.text-section-right{
+    z-index: 5;
+    position: relative;
+    left: 30%;
+    margin: 0px 0px 80px 0px;
+    width: 60%;
+    border: 2px solid #3b80d1;
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 13px 32px -11px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 13px 32px -11px rgba(0,0,0,0.75);
+    box-shadow: 10px 13px 32px -11px rgba(0,0,0,0.75);
+    background-color: #fff;
+    color: #3b80d1;
+}
+.page-subheader{
+    z-index: 5;
+    margin: 0px;
+    letter-spacing: 1px;
+}
+.page-paragraph{
+    z-index: 5;
+    margin: 0;
+    letter-spacing: 1px;
 }
 .grid-container{
     display: grid;

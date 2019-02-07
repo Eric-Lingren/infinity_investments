@@ -71,7 +71,24 @@ class About extends Component {
             <div>
                 <Navbar />
                 <div className='content-container'>
-                <h1 className='page-header'>Content here</h1>
+                    <h1 className='page-header'>How Our Robots Work</h1>
+                    <div className='text-section-left'>
+                        <h2 className='page-subheader'>What We Trade:</h2>
+                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                    </div>
+                    <div className='text-section-right'>
+                        <h2 className='page-subheader'>What We Trade:</h2>
+                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                    </div>
+                    <div className='text-section-left'>
+                        <h2 className='page-subheader'>What We Trade:</h2>
+                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                    </div>
+                    <div className='text-section-right'>
+                        <h2 className='page-subheader'>What We Trade:</h2>
+                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                    </div>
+                    
                     <div className='grid-container'>
                         {this.state.shuffledImages.map((picture,index) => <div 
                                                         className={`money-image ${index % 2 === 1 ? "odd-image" : "even-image"}`} 
