@@ -50,3 +50,12 @@
     color: #3b80d1;
     
 }
+
+@media only screen and (max-width: 650px){
+    .single-line-input-field{
+        width: 300px;
+    }
+    .multi-line-input-field{
+        width: 300px;
+    }
+}
