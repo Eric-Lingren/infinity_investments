@@ -1,23 +1,28 @@
 .navbar-wrapper{
     background-color: rgb(255, 255, 255);
     width: 100%;
-    height: 5vh;
+    height: 40px;
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
-    border-top: rgb(0,0,0) 2px solid;
-    border-bottom: rgb(0,0,0) 2px solid;
+    border-top: #3b80d1 2px solid;
+    border-bottom: #3b80d1 2px solid;
 }
 .navbarTextLink{
-    color: black;
+    color: #3b80d1;
     text-decoration: none;
-    border-bottom: rgb(255, 255, 255) 2px solid;
-    padding: 0 5px 0 5px;
     transition: .4s ease-in-out;
-    font-weight:600;
+    font-size: 15pt;
+    font-weight: 400;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 20pt;
+    padding-right: 20pt;
+    letter-spacing: 2px;
 }
-.navbarTextLink:hover{
-    border-bottom: black 2px solid;
+.navbarTextLink:hover, .active{
     transition: .4s ease-in-out;
+    background-color: #3b80d1;
+    color: white;
 }

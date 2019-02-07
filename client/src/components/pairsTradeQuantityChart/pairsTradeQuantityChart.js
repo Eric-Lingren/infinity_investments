@@ -16,6 +16,9 @@ class pairsTradeQuantityChart extends Component {
         })
     }
 
+    componentWillUnmount(){
+        this.props.resetChartToDefault()
+    }
     // shouldComponentUpdate(nextProps){
     //     if(nextProps.symbolsTradesCount >= 100){
     //         return true

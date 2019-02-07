@@ -32,7 +32,7 @@
     
 }
 .title-header{
-    color: white;
+    color: #fff;
     margin: 0;
     text-align: center;
     font-size: 5vw;
@@ -53,11 +53,13 @@
     font-size: 1.5vw;
     text-align: center;
     width: 90%;
-    margin: 5px;
+    margin: 10px 0px 10px 0px;
+    color: #3b80d1;
+    font-weight: 500;
 }
 .home-content-link{
     font-size: 1em;
-    color: black;
+    color: #3b80d1;
 }
 
 
