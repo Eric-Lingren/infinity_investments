@@ -47,8 +47,14 @@
 }
 .page-paragraph{
     z-index: 5;
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 30px;
     letter-spacing: 1px;
+}
+.page-paragraph-link{
+    z-index: 5;
+    letter-spacing: 1px;
+    color: #3b80d1;
+    font-weight: 700;
 }
 .grid-container{
     display: grid;

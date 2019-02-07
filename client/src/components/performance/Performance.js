@@ -15,6 +15,9 @@ class Performance extends Component {
     componentDidMount(){
         
     }
+    componentWillUnmount(){
+        this.props.resetChartToDefault()
+    }
 
     resetBubbleChartstoStart = () => {
         this.props.resetChartToDefault()

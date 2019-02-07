@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Navbar from '../navbar/Navbar';
 import './about.css';
 import TweenLite from 'gsap';
-import Lodash from 'lodash.shuffle'
+import Lodash from 'lodash.shuffle';
+import {Link} from 'react-router-dom'
 
 
 class About extends Component {
@@ -60,6 +61,10 @@ class About extends Component {
         TweenLite.from( document.getElementById('section3'), 1, {x: -1000, delay: 0.6})
         TweenLite.to( document.getElementById('section4'), 2, {opacity: 1, delay: 0.9})
         TweenLite.from( document.getElementById('section4'), 1, {x: 1000, delay: 0.9})
+        TweenLite.to( document.getElementById('section5'), 2, {opacity: 1, delay: 1.2})
+        TweenLite.from( document.getElementById('section5'), 1, {x: -1000, delay: 1.2})
+        TweenLite.to( document.getElementById('section6'), 2, {opacity: 1, delay: 1.5})
+        TweenLite.from( document.getElementById('section6'), 1, {x: 1000, delay: 1.5})
     }
 
     showImage = (id) => {
@@ -81,20 +86,28 @@ class About extends Component {
                 <div className='content-container'>
                     
                     <div className='text-section-left' id='section1'>
-                        <h2 className='page-subheader'>What We Trade:</h2>
-                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                        <h2 className='page-subheader'>Who We Are:</h2>
+                        <p className='page-paragraph'> Lovers of financial freedom, avid technology enthusiasts, dreamers of great things, and crafts-people who are driven to improve both ourselves as well as our technology.  </p>
                     </div>
                     <div className='text-section-right' id='section2'>
                         <h2 className='page-subheader'>What We Trade:</h2>
-                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                        <p className='page-paragraph'> Our robots trade a variety of currency pairs to provide diversification and reduce exposure to the global financial markets. We only trade majors and minors.  Our robots have been proven to be ineffective or inefficient on JPY and exotics. The crosses it will trade are comprised of USD, GBP, CAD, AUD, CHF, or NZD.   </p>
                     </div>
                     <div className='text-section-left' id='section3'>
-                        <h2 className='page-subheader'>What We Trade:</h2>
-                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                        <h2 className='page-subheader'>Where We Trade:</h2>
+                        <p className='page-paragraph'> We don't!  We let the robots do all the work and we have automated checks in place to alert us if anything is broken or behaving unusually.  Our robots are hosted on Amazon Cloud Servers to guarantee 100% uptime and availability to the currency markets. </p>
                     </div>
                     <div className='text-section-right' id='section4'>
-                        <h2 className='page-subheader'>What We Trade:</h2>
-                        <p className='page-paragraph'>Our robots trade a varitey of currency pairs to provide diversification and reduce exposure to the global finance markets. We only trade majors and minors.  Our robots have been proven to be ineffective or ineffecent on JPY or exotics. Crosses it will trade may be comprised of USD, GBP, CAD, AUD, CHF, or NZD.  </p>
+                        <h2 className='page-subheader'>When We Trade:</h2>
+                        <p className='page-paragraph'> Anytime our robots identify an optimum opportunity they will enter and exit positions.  They are entering or exiting the markets on average 5 times per day and run during all forex market hours. </p>
+                    </div>
+                    <div className='text-section-left' id='section5'>
+                        <h2 className='page-subheader'>Why We Trade:</h2>
+                        <p className='page-paragraph'> Same reason everyone does...  For the money. </p>
+                    </div>
+                    <div className='text-section-right' id='section6'>
+                        <h2 className='page-subheader'>How Does It Work & What Is Our Strategy:</h2>
+                        <p className='page-paragraph'> Our algorithms enter day or swing positions based on the divergence between price and the RSI on 15-minute charts.  Once a potential trade is identified, they use ADX filters to validate whether the trade is an optimal position to take.  This strategy captures small but frequent reversals in the markets.  Once in a position, they hold the trade as long as is necessary to capture a small predetermined profit. By only entering the markets with very small positions we are able to maintain a trade for longer than the average trader until profit targets are reached. For a more in-depth analysis of our strategy, please go to the <Link className='page-paragraph-link' to="/performance"> performance page</Link> or <Link className='page-paragraph-link' to="/contact"> contact us here. </Link>  </p>
                     </div>
 
                     <div className='grid-container'>
