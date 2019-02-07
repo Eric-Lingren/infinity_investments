@@ -83,7 +83,7 @@ class pairsTradeQuantityChart extends Component {
 
 
         var textLabels = text
-            .text( function (d) {{ return `${d.symbol}: ${d.total}`; }})
+            .text( function (d) { return `${d.symbol}: ${d.total}`; })
             .attr("font-family", "sans-serif")
             .attr("font-size", "20px")
             .attr("font-weight", "bold")

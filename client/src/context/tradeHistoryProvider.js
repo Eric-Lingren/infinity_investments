@@ -103,7 +103,7 @@ class TradeHistoryProvider extends Component {
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
                     toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
-                    resetChartToDefault: this. resetChartToDefault,
+                    resetChartToDefault: this.resetChartToDefault,
                 }}>
                 { this.props.children }
             </TradeHistoryContext.Provider>

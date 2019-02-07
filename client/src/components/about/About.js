@@ -44,6 +44,28 @@ class About extends Component {
                 'https://www.banknotenews.com/files/switzerland_snb_20_francs_2015.00.00_b356a_p76_15_q_0056837_f.jpg',
                 'http://www.stevenbron.nl/images/2016-04/zwitserland-50francs-achter_copy1.jpg',
                 'https://www.banknotenews.com/files/switzerland_snb_100_francs_2010.00.00_p72i_10_f_1449721_r.jpg',
+                'https://www.bankofcanada.ca/wp-content/uploads/2015/09/5_front.jpg',
+                'https://www.bankofcanada.ca/wp-content/uploads/2015/09/10_front.jpg',
+                'https://upload.wikimedia.org/wikipedia/en/6/6d/Canadian_%2450_note_specimen_-_face.png',
+                'https://www.bankofcanada.ca/wp-content/uploads/2015/09/100_front.jpg',
+                'http://ukzambians.co.uk/home/wp-content/uploads/2016/06/Zim-dollar.png',
+                'https://www.leftovercurrency.com/wp-content/uploads/2016/11/1000-thai-baht-banknote-improved-security-features-obverse-1.jpg',
+                'https://upload.wikimedia.org/wikipedia/en/7/7a/DKK_100_obverse_%282009%29.jpg',
+                'https://i.pinimg.com/originals/61/8a/6a/618a6a2ebd0f8157203b253b64dfff57.jpg',
+                'https://vignette.wikia.nocookie.net/currencies/images/e/e3/Banknote_5000_rubles_%281997%29_front.jpg/revision/latest?cb=20110320212128',
+                'https://www.leftovercurrency.com/wp-content/uploads/2017/09/1000-russian-rubles-banknote-1997-obverse-1.jpg',
+                'https://img.ma-shops.com/numiscollection/pic/591122.jpg',
+                'http://www.e-allmoney.com/banknotes/eur/img/bosnia2.jpg',
+                'https://www.leftovercurrency.com/wp-content/uploads/2017/12/100-konvertible-marks-banknote-bosnian-croatian-holographic-thread-obverse-1.jpg',
+                'https://img.ma-shops.com/abram/pic/7596_singarp_50b-1470.jpg',
+                'https://www.numiscollection.com/upload/image/singapore-50-dollars-ey-bin-ishak---arts---diamond-p-image-65923-grande.jpg',
+                'https://img.ma-shops.com/steidl/pic/2289_0053-sin-2007-ac.jpg',
+                'https://www.banknotenews.com/files/turkey_tcmb_200_turk_lirasi_2009.00.00_b305c_p227_c009_897317_f.jpg',
+                'https://theiranproject.com/wp-content/uploads/2018/04/Turkey-lira.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/e/e1/500_Armenian_dram_-_2017_%28obverse%29.png',
+                'https://upload.wikimedia.org/wikipedia/commons/1/1f/100_Armenian_dram_-_1998_%28obverse%29.png',
+                'https://upload.wikimedia.org/wikipedia/commons/5/57/50_Armenian_dram_-_1998_%28obverse%29.png',
+                'http://4.bp.blogspot.com/-961x6rAm7f0/UlU8usfdGRI/AAAAAAAADT0/WTyoDSygQ9M/s1600/rm100+zeti.jpg'
             ],
             shuffledImages: []
         }
@@ -68,14 +90,10 @@ class About extends Component {
     }
 
     showImage = (id) => {
-        // e.target.className = ''
-        // e.target.className = 'show-money-image'
         TweenLite.to( document.getElementById(id), 0.7, {opacity: 1, scale: 1.05})
     }
 
     hideImage = (id) => {
-        // e.target.className = ''
-        // e.target.className = 'hide-money-image'
         TweenLite.to( document.getElementById(id), 2.5, {opacity: 0, scale: 1, delay: .25})
     }
 
@@ -84,7 +102,6 @@ class About extends Component {
             <div>
                 <Navbar />
                 <div className='content-container'>
-                    
                     <div className='text-section-left' id='section1'>
                         <h2 className='page-subheader'>Who We Are:</h2>
                         <p className='page-paragraph'> Lovers of financial freedom, avid technology enthusiasts, dreamers of great things, and crafts-people who are driven to improve both ourselves as well as our technology.  </p>
@@ -109,7 +126,6 @@ class About extends Component {
                         <h2 className='page-subheader'>How Does It Work & What Is Our Strategy:</h2>
                         <p className='page-paragraph'> Our algorithms enter day or swing positions based on the divergence between price and the RSI on 15-minute charts.  Once a potential trade is identified, they use ADX filters to validate whether the trade is an optimal position to take.  This strategy captures small but frequent reversals in the markets.  Once in a position, they hold the trade as long as is necessary to capture a small predetermined profit. By only entering the markets with very small positions we are able to maintain a trade for longer than the average trader until profit targets are reached. For a more in-depth analysis of our strategy, please go to the <Link className='page-paragraph-link' to="/performance"> performance page</Link> or <Link className='page-paragraph-link' to="/contact"> contact us here. </Link>  </p>
                     </div>
-
                     <div className='grid-container'>
                         {this.state.shuffledImages.map((picture,index) => <div 
                                                         className={`money-image ${index % 2 === 1 ? "odd-image" : "even-image"}`} 
@@ -123,13 +139,12 @@ class About extends Component {
                                                         onMouseOut={() => this.hideImage("imageId" + index)}
                                                         >
                                                         </div>
-                                                    )}
+                        )}
                     </div>
                 </div>
             </div>
         )
     }
-
 }
 
 export default About
