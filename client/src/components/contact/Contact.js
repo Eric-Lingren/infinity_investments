@@ -17,8 +17,7 @@ class Contact extends Component {
         const email = document.getElementById('email').value;
         const subject = document.getElementById('subject').value;
         const message = document.getElementById('message').value;
-        console.log(name, email, subject, message)
-        
+
         let data = {
             name: name,   
             email: email,  
@@ -26,14 +25,17 @@ class Contact extends Component {
             messsage: message
         }
 
-        axios.post(`/sendEmail`, data).then(response) => {
+        axios.post(`/sendEmail`, data).then(response => {
             if (response.data.msg === 'success'){
+                console.log(response)
                 alert("Message Sent."); 
                 this.resetForm()
-            }else if(response.data.msg === 'fail'){
+            } else if (response.data.msg === 'fail'){
+                console.log(response)
                 alert("Message failed to send.")
             }
-        }
+        })
+        .catch(err => console.log(err.response.data.errMsg))
 
         
     }
