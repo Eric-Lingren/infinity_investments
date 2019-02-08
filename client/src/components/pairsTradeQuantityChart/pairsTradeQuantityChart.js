@@ -116,7 +116,7 @@ class pairsTradeQuantityChart extends Component {
         return(
             <div>
                 <div >
-                    <svg className='chart-container' ref={node => this.node = node} width={this.state.width} height={this.state.height}></svg>
+                    <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
                 </div>
             </div>
         )

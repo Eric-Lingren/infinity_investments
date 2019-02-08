@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
+import './totalTradeQuantityChart.css'
 
 class TotalTradeQuantityChart extends Component {
     constructor(props){
@@ -97,10 +98,11 @@ class TotalTradeQuantityChart extends Component {
     render(){
         //this.draw()
         return(
-            <div>
-                <div >
-                    <svg className='chart-container' ref={node => this.node = node} width={this.state.width} height={this.state.height}></svg>
-                </div>
+            <div className='chart-wrapper' 
+            // style={{width: '500px'}} 
+            >
+                <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
+                
             </div>
         )
     }
