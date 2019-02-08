@@ -12,7 +12,8 @@
     margin-left: -145px;
     z-index: 5;
 }
-.menu-with-open-button{
+.menu-with-arrow{
+    z-index: 5;
 }
 .arrow{
     width: 30px;

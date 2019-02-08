@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Navbar from '../navbar/Navbar';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import './performance.css';
-import PairsTradeQuantityChart from '../pairsTradeQuantityChart/pairsTradeQuantityChart'
-import TotalTradeQuantityChart from '../totalTradeQuantityChart/totalTradeQuantityChart'
-import RightArrow from './right-arrow-blue.svg'
-import LeftArrow from './left-arrow-blue.svg'
+import PairsTradeQuantityChart from '../pairsTradeQuantityChart/pairsTradeQuantityChart';
+import TotalTradeQuantityChart from '../totalTradeQuantityChart/totalTradeQuantityChart';
+import RightArrow from './right-arrow-blue.svg';
+import LeftArrow from './left-arrow-blue.svg';
+import TweenLite from 'gsap';
 
 class Performance extends Component {
     constructor(props){
@@ -25,19 +26,19 @@ class Performance extends Component {
 
     toggleMenu = () => {
         let sideMenu = document.getElementById('sideMenu')
-        let chartWrapper = document.getElementById('chartWrapper')
+        let arrowMenu = document.getElementById('arrowMenu')
 
         if(this.state.menuIsClosed){
             this.setState({menuIsClosed: false})
-            sideMenu.style.marginLeft = '0px'
+            TweenLite.to( sideMenu, .6, {x: 145})
+            TweenLite.to( arrowMenu, .6, {x: 145})
             
             
         } else {
             this.setState({menuIsClosed: true})
-            sideMenu.style.marginLeft = '-145px'
-            //chartWrapper.style.marginLeft = '-150px'
+            TweenLite.to( sideMenu, .6, {x: 0})
+            TweenLite.to( arrowMenu, .6, {x: 0})
         }
-        //document.getElementById('sideMenu')
     }
 
     resetBubbleChartstoStart = () => {
@@ -55,7 +56,7 @@ class Performance extends Component {
                         <button className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2018</button>
                         <button className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2019</button>
                     </div>
-                    <div className='menu-with-open-button'>
+                    <div className='menu-with-arrow' id='arrowMenu'>
                         {
                             this.state.menuIsClosed 
                             ?
