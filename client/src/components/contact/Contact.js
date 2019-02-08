@@ -26,15 +26,14 @@ class Contact extends Component {
         }
         
         axios.post(`/sendEmail`, data).then(response => {
-            if (response.status === 201){
-                console.log(response)
+            if (response.status === 200){
                 alert("Message Sent."); 
                 document.getElementById('name').value = ''
                 document.getElementById('email').value = ''
                 document.getElementById('subject').value = ''
                 document.getElementById('message').value = ''
-            } else if (response.status === 500){
-                alert("Message failed to send.")
+            } else {
+                alert("Message failed to send. \n Please try again.")
             }
         })
         .catch(err => console.log(err))

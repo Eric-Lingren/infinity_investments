@@ -25,13 +25,16 @@ transporter.verify((error, success) => {
 // Add One
 sendEmailRouter.post('/', (req, res, next) => {
     console.log('post request got hit')
-    var name = req.body.name
-    var email = req.body.email
-    let subject = req.body.subject
-    var message = req.body.message
-    var content = `name: ${name} \n email: ${email} \n message: ${message}`
+    console.log(req.body)
+    console.log(req.body.message)
 
-    var mail = {
+    let name = req.body.name
+    let email = req.body.email
+    let subject = req.body.subject
+    let message = req.body.message
+    let content = `name: ${name} \n email: ${email} \n message: ${message}`
+
+    let mail = {
         from: name,
         to: 'Infinity.Investments.Team@gmail.com', 
         subject: subject,
@@ -49,16 +52,6 @@ sendEmailRouter.post('/', (req, res, next) => {
         })
         }
     })
-
-    // const newEmail = new Email(req.body)
-    // newEmail.save((err, email) => {
-    //     if (err) {
-    //         res.status(500)
-    //         return next(err)
-    //     }
-    //     return res.status(201).send(email)
-    // })
 })
-
 
 module.exports = sendEmailRouter
