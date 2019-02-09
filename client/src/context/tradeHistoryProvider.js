@@ -73,7 +73,6 @@ class TradeHistoryProvider extends Component {
     }
 
     resetChartToDefault = () => {
-        console.log('props reset ran')
         this.setState({
             showBubbleChartCurrencyQuantity: false,
             showBubbleChartTotalTrades: false,

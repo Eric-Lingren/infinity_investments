@@ -17,7 +17,7 @@ class Performance extends Component {
     }
     
     componentDidMount(){
-        
+    
     }
 
     componentWillUnmount(){
@@ -27,13 +27,12 @@ class Performance extends Component {
     toggleMenu = () => {
         let sideMenu = document.getElementById('sideMenu')
         let arrowMenu = document.getElementById('arrowMenu')
-
+        
         if(this.state.menuIsClosed){
             this.setState({menuIsClosed: false})
             TweenLite.to( sideMenu, .6, {x: 145})
             TweenLite.to( arrowMenu, .6, {x: 145})
-            
-            
+
         } else {
             this.setState({menuIsClosed: true})
             TweenLite.to( sideMenu, .6, {x: 0})
@@ -60,7 +59,7 @@ class Performance extends Component {
                         {
                             this.state.menuIsClosed 
                             ?
-                            <img src={RightArrow} className='arrow' alt='arrow-icon' onClick={this.toggleMenu}></img>
+                            <img src={RightArrow} id='rightArrow' className='arrow' alt='arrow-icon' onClick={this.toggleMenu}></img>
                             :
                             <img src={LeftArrow} className='arrow' alt='arrow-icon' onClick={this.toggleMenu}></img>
                         } 
