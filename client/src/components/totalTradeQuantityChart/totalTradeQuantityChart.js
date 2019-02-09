@@ -8,23 +8,25 @@ class TotalTradeQuantityChart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            //totalTradesTaken: [1368]
+            totalTradesTaken: [0]
         }
     }
     
     componentDidMount(){
-        console.log(this.props.totalTradesTaken)
-        // Promise.resolve(this.props.getTrades()).then(res =>{
-        //     this.drawTotalTradeQuantityChart()
-        // })
-        this.setState({})
-        this.drawTotalTradeQuantityChart(this.props, this.props.totalTradesTaken)
-
+        this.props.getTrades()
+    }
+    componentWillReceiveProps(nextProps){
+        console.log('nextProps ran')
+        if(nextProps.trades.length > 0){
+            this.setState({totalTradesTaken: [nextProps.trades.length]}
+            , () => this.drawTotalTradeQuantityChart())
+        }
     }
 
-    drawTotalTradeQuantityChart = (props, props2) => {
-        console.log(props2)
-        //let myProps =  this.props
+    drawTotalTradeQuantityChart = () => {
+        console.log('chart render ran')
+
+        let myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
         let height = window.innerHeight - 50;
@@ -46,7 +48,7 @@ class TotalTradeQuantityChart extends Component {
 
 
         let circles = chart.selectAll('circle')
-            .data(props2)
+            .data(this.state.totalTradesTaken)
             .enter().append('circle')
             .attr('r', function(d){
                 return radiusScale(d)
@@ -55,7 +57,7 @@ class TotalTradeQuantityChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                //myProps.toggleChartFromTotalTradesToCurrencyTotals()
+                myProps.toggleChartFromTotalTradesToCurrencyTotals()
             })
             .on('mouseover', function(d){
                 d3.select(this)
@@ -70,7 +72,8 @@ class TotalTradeQuantityChart extends Component {
             })
 
         var text = chart.selectAll("text")
-            .data(props2)
+            // .data(totalTrades)
+            .data(this.state.totalTradesTaken)
             .enter()
             .append("text");
 

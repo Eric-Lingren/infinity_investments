@@ -33,7 +33,23 @@ class TradeHistoryProvider extends Component {
         // })
     }
 
-    getTrades = (callback) => {
+    // getTrades = (callback) => {
+    //     axios.get(`/trades`).then(response => {
+    //         let data = response.data
+    //         let allTrades  = []
+
+    //         data.forEach(trade => {
+    //             if(trade.Action === "Buy" || trade.Action === "Sell"){
+    //                 allTrades.push(trade)
+    //             }
+    //         });
+    //         this.setState({ trades: allTrades } , () => callback(this.state.trades))
+    //         //this.calculatePairs()
+    //     })
+    // }
+
+
+    getTrades = () => {
         axios.get(`/trades`).then(response => {
             let data = response.data
             let allTrades  = []
@@ -43,7 +59,9 @@ class TradeHistoryProvider extends Component {
                     allTrades.push(trade)
                 }
             });
-            this.setState({ trades: allTrades } , () => callback(this.state.trades))
+            this.setState({ trades: allTrades } 
+               // , () => console.log(this.state.trades.length)
+                )
             //this.calculatePairs()
         })
     }
