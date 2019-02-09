@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 import './home.css';
+import {withTradeData} from '../../context/tradeDataProvider';
 
 class Home extends Component {
     render(){
+        console.log(this.props.sampleData)
         return(
             <div className='home-page-wrapper'>
                 <Navbar />
@@ -24,4 +26,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default withTradeData(Home)

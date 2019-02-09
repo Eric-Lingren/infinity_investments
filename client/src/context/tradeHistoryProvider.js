@@ -49,13 +49,14 @@ class TradeHistoryProvider extends Component {
 
     calculatePairs = () => {
         let allTrades = this.state.trades;
+
+        let symbolsTradedArr = []
+        //let totalTradesCount = allTrades.length
+
         allTrades.forEach(trade => {
-            this.setState(prevState => ({
-                symbolsTraded:  [...prevState.symbolsTraded, trade.Symbol],
-                totalTrades: [allTrades.length]
-            }))
+            symbolsTradedArr.push(trade.Symbol)
         })
-        
+
         let symbols = this.state.symbolsTraded
         let count = symbols.reduce(function(r, e) {
             if(!r[e]) r[e] = {'symbol': e, 'total': 1}
@@ -66,6 +67,7 @@ class TradeHistoryProvider extends Component {
         var result = Object.keys(count).map(e => count[e])
 
         this.setState({
+            symbolsTraded:  symbolsTradedArr,
             symbolsTradesCount: result
         })
     }

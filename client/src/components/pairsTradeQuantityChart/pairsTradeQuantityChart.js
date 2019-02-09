@@ -7,6 +7,7 @@ class pairsTradeQuantityChart extends Component {
     constructor(props){
         super(props)
         this.state = {
+            pageHasRendered: false,
         }
     }
     
@@ -14,13 +15,21 @@ class pairsTradeQuantityChart extends Component {
         Promise.resolve(this.props.getTrades()).then(res =>{
             //this.drawPairsTradeQuantityChart()
         })
+        
     }
+
+    // componentWillReceiveProps(nextProps){
+    //     if (nextProps.symbolsTradesCount.length > 5){
+    //         this.drawPairsTradeQuantityChart()
+    //     }
+    // }
 
     componentWillUnmount(){
         this.props.resetChartToDefault()
     }
+
     // shouldComponentUpdate(nextProps){
-    //     if(nextProps.symbolsTradesCount >= 100){
+    //     if(nextProps.symbolsTradesCount > 0){
     //         return true
     //     } else {
     //         return false
@@ -37,13 +46,13 @@ class pairsTradeQuantityChart extends Component {
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 160])
+        var radiusScale = d3.scaleSqrt().domain([1, 10]).range([20, 30])
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
             .force('y', d3.forceY(height / 2).strength(0.05))
             .force('collide', d3.forceCollide(function(d){
-                return radiusScale((d.total / 2) -1 )
+                return radiusScale((d.total ) +1 )
             }))
 
         let circles = chart.selectAll('circle')
@@ -63,7 +72,7 @@ class pairsTradeQuantityChart extends Component {
                 d3.select(this)
                 .transition()
                 .attr('r', function(d){
-                    return radiusScale(d.total *.4)
+                    return radiusScale(d.total * 1.3)
                 })
                 d3.select(this).style("cursor", "pointer"); 
 
@@ -72,7 +81,7 @@ class pairsTradeQuantityChart extends Component {
                 d3.select(this)
                 .transition()
                 .attr('r', function(d){
-                    return radiusScale(d.total *.32)
+                    return radiusScale(d.total )
                 })
             })
 
@@ -110,8 +119,17 @@ class pairsTradeQuantityChart extends Component {
         }
     }
 
+    // testSetState = () => {
+    //     this.setState({pageHasRendered: true})
+    // }
     render(){
         console.log("WTF - How Many Renders????")
+            // if(!this.state.pageHasRendered){
+            //     console.log('page render check ran')
+            //     this.testSetState()
+            //     //this.drawPairsTradeQuantityChart()
+            //     this.setState({pageHasRendered: true}, () => this.drawPairsTradeQuantityChart())
+            // } 
         this.drawPairsTradeQuantityChart()
         return(
             <div>
