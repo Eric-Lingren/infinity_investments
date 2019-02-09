@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 import './home.css';
-import {withTradeData} from '../../context/tradeDataProvider';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 
 class Home extends Component {
@@ -11,10 +10,6 @@ class Home extends Component {
         this.state = {
 
         }
-    }
-
-    componentDidMount(){
-        this.props.getTrades(this.props.pullAllTradeData)
     }
 
     render(){
@@ -37,4 +32,4 @@ class Home extends Component {
     }
 }
 
-export default withTradeHistory(withTradeData(Home))
+export default withTradeHistory(Home)

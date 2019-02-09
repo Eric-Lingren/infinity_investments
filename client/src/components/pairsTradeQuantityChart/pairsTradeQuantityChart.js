@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
-import './BubbleChartCurrencyQuantity.css'
+import './BubbleChartCurrencyQuantity.css';
 
 class pairsTradeQuantityChart extends Component {
     constructor(props){
@@ -12,10 +12,7 @@ class pairsTradeQuantityChart extends Component {
     }
     
     componentDidMount(){
-        Promise.resolve(this.props.getTrades()).then(res =>{
-            //this.drawPairsTradeQuantityChart()
-        })
-        
+        this.props.calculatePairs()
     }
 
     componentWillUnmount(){
@@ -32,13 +29,13 @@ class pairsTradeQuantityChart extends Component {
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 10]).range([20, 30])
+        var radiusScale = d3.scaleSqrt().domain([1, 10]).range([15, 30])
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
             .force('y', d3.forceY(height / 2).strength(0.05))
             .force('collide', d3.forceCollide(function(d){
-                return radiusScale((d.total ) +1 )
+                return radiusScale((d.total ) + 5 )
             }))
 
         let circles = chart.selectAll('circle')
@@ -74,8 +71,7 @@ class pairsTradeQuantityChart extends Component {
         var text = chart.selectAll("text")
             .data(this.props.symbolsTradesCount)
             .enter()
-            .append("text");
-
+            .append("text")
 
         var textLabels = text
             .text( function (d) { return `${d.symbol}: ${d.total}`; })
@@ -105,27 +101,14 @@ class pairsTradeQuantityChart extends Component {
         }
     }
 
-    // testSetState = () => {
-    //     this.setState({pageHasRendered: true})
-    // }
     render(){
-        console.log("WTF - How Many Renders????")
-            // if(!this.state.pageHasRendered){
-            //     console.log('page render check ran')
-            //     this.testSetState()
-            //     //this.drawPairsTradeQuantityChart()
-            //     this.setState({pageHasRendered: true}, () => this.drawPairsTradeQuantityChart())
-            // } 
         this.drawPairsTradeQuantityChart()
         return(
             <div>
-                <div >
-                    <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
-                </div>
+                <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
             </div>
         )
     }
-
 }
 
 export default withTradeHistory(pairsTradeQuantityChart)

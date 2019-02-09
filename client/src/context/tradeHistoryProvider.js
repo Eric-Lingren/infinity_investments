@@ -12,15 +12,11 @@ class TradeHistoryProvider extends Component {
             liveAccountId: '',
             demoAccountId: '',
             trades: [],
-            symbolsTraded: [],
             symbolsTradesCount: [],
-            totalTrades: [0],
             showBubbleChartTotalTrades: true,
             showBubbleChartCurrencyQuantity: false,
-
         }
     }
-
 
     getMyAccounts = () => {
         // axios.get(`https://vschool-cors.herokuapp.com?url=https://www.myfxbook.com/api/get-my-accounts.json?session=${this.state.establishedSession}`).then(response => { 
@@ -33,22 +29,6 @@ class TradeHistoryProvider extends Component {
         // })
     }
 
-    // getTrades = (callback) => {
-    //     axios.get(`/trades`).then(response => {
-    //         let data = response.data
-    //         let allTrades  = []
-
-    //         data.forEach(trade => {
-    //             if(trade.Action === "Buy" || trade.Action === "Sell"){
-    //                 allTrades.push(trade)
-    //             }
-    //         });
-    //         this.setState({ trades: allTrades } , () => callback(this.state.trades))
-    //         //this.calculatePairs()
-    //     })
-    // }
-
-
     getTrades = () => {
         axios.get(`/trades`).then(response => {
             let data = response.data
@@ -59,36 +39,26 @@ class TradeHistoryProvider extends Component {
                     allTrades.push(trade)
                 }
             });
-            this.setState({ trades: allTrades } 
-               // , () => console.log(this.state.trades.length)
-                )
-            //this.calculatePairs()
+
+            this.setState({ trades: allTrades })
         })
     }
 
     calculatePairs = () => {
         let allTrades = this.state.trades;
-
         let symbolsTradedArr = []
-        //let totalTradesCount = allTrades.length
 
-        allTrades.forEach(trade => {
-            symbolsTradedArr.push(trade.Symbol)
-        })
+        allTrades.forEach(trade => { symbolsTradedArr.push(trade.Symbol) })
 
-        let symbols = this.state.symbolsTraded
-        let count = symbols.reduce(function(r, e) {
+        let countTotals = symbolsTradedArr.reduce(function(r, e) {
             if(!r[e]) r[e] = {'symbol': e, 'total': 1}
             else r[e].total += 1
             return r;
-
         }, {})
-        var result = Object.keys(count).map(e => count[e])
+        
+        let pairsQuantityResult = Object.keys(countTotals).map(e => countTotals[e])
 
-        this.setState({
-            symbolsTraded:  symbolsTradedArr,
-            symbolsTradesCount: result
-        })
+        this.setState({ symbolsTradesCount: pairsQuantityResult })
     }
 
     resetChartToDefault = () => {
@@ -96,9 +66,7 @@ class TradeHistoryProvider extends Component {
             showBubbleChartCurrencyQuantity: false,
             showBubbleChartTotalTrades: false,
             trades: [],
-            symbolsTraded: [],
             symbolsTradesCount: [],
-            totalTrades: [0],
         })
     }
 
@@ -118,8 +86,9 @@ class TradeHistoryProvider extends Component {
                     accounts: this.state.accounts,
                     trades: this.state.trades,
                     getTrades: this.getTrades,
+                    calculatePairs: this.calculatePairs,
+
                     symbolsTradesCount: this.state.symbolsTradesCount,
-                    totalTrades: this.state.totalTrades,
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
                     toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,

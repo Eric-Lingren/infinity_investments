@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
-import {withTradeData} from '../../context/tradeDataProvider';
 import * as d3 from "d3";
-import './totalTradeQuantityChart.css'
+import './totalTradeQuantityChart.css';
 
 class TotalTradeQuantityChart extends Component {
     constructor(props){
@@ -15,8 +14,8 @@ class TotalTradeQuantityChart extends Component {
     componentDidMount(){
         this.props.getTrades()
     }
+
     componentWillReceiveProps(nextProps){
-        console.log('nextProps ran')
         if(nextProps.trades.length > 0){
             this.setState({totalTradesTaken: [nextProps.trades.length]}
             , () => this.drawTotalTradeQuantityChart())
@@ -24,8 +23,6 @@ class TotalTradeQuantityChart extends Component {
     }
 
     drawTotalTradeQuantityChart = () => {
-        console.log('chart render ran')
-
         let myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
@@ -45,7 +42,6 @@ class TotalTradeQuantityChart extends Component {
             .force('collide', d3.forceCollide(function(d){
                 return radiusScale(d.total)
             }))
-
 
         let circles = chart.selectAll('circle')
             .data(this.state.totalTradesTaken)
@@ -72,7 +68,6 @@ class TotalTradeQuantityChart extends Component {
             })
 
         var text = chart.selectAll("text")
-            // .data(totalTrades)
             .data(this.state.totalTradesTaken)
             .enter()
             .append("text");
@@ -105,17 +100,12 @@ class TotalTradeQuantityChart extends Component {
     }
 
     render(){
-        //this.draw()
         return(
-            <div className='chart-wrapper' 
-            // style={{width: '500px'}} 
-            >
+            <div className='chart-wrapper'>
                 <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
-                
             </div>
         )
     }
-
 }
 
-export default withTradeHistory(withTradeData(TotalTradeQuantityChart))
+export default withTradeHistory(TotalTradeQuantityChart)
