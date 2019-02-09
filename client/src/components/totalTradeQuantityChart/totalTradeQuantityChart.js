@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
+import {withTradeData} from '../../context/tradeDataProvider';
 import * as d3 from "d3";
 import './totalTradeQuantityChart.css'
 
@@ -7,18 +8,23 @@ class TotalTradeQuantityChart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            testData: [154]
+            //totalTradesTaken: [1368]
         }
     }
     
     componentDidMount(){
-        Promise.resolve(this.props.getTrades()).then(res =>{
-            this.drawTotalTradeQuantityChart()
-        })
+        console.log(this.props.totalTradesTaken)
+        // Promise.resolve(this.props.getTrades()).then(res =>{
+        //     this.drawTotalTradeQuantityChart()
+        // })
+        this.setState({})
+        this.drawTotalTradeQuantityChart(this.props, this.props.totalTradesTaken)
+
     }
 
-    drawTotalTradeQuantityChart = (props) => {
-        const myProps =  this.props
+    drawTotalTradeQuantityChart = (props, props2) => {
+        console.log(props2)
+        //let myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
         let height = window.innerHeight - 50;
@@ -28,8 +34,8 @@ class TotalTradeQuantityChart extends Component {
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 100])
-        var radiusScale2 = d3.scaleSqrt().domain([1, 100]).range([20, 110]) 
+        var radiusScale = d3.scaleSqrt().domain([1, 250]).range([20, 70])
+        var radiusScale2 = d3.scaleSqrt().domain([1, 200]).range([20, 70]) 
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
@@ -40,7 +46,7 @@ class TotalTradeQuantityChart extends Component {
 
 
         let circles = chart.selectAll('circle')
-            .data(this.state.testData)
+            .data(props2)
             .enter().append('circle')
             .attr('r', function(d){
                 return radiusScale(d)
@@ -49,7 +55,7 @@ class TotalTradeQuantityChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                myProps.toggleChartFromTotalTradesToCurrencyTotals()
+                //myProps.toggleChartFromTotalTradesToCurrencyTotals()
             })
             .on('mouseover', function(d){
                 d3.select(this)
@@ -64,7 +70,7 @@ class TotalTradeQuantityChart extends Component {
             })
 
         var text = chart.selectAll("text")
-            .data(this.state.testData)
+            .data(props2)
             .enter()
             .append("text");
 
@@ -109,4 +115,4 @@ class TotalTradeQuantityChart extends Component {
 
 }
 
-export default withTradeHistory(TotalTradeQuantityChart)
+export default withTradeHistory(withTradeData(TotalTradeQuantityChart))

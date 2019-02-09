@@ -3,10 +3,21 @@ import {Link} from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 import './home.css';
 import {withTradeData} from '../../context/tradeDataProvider';
+import {withTradeHistory} from '../../context/tradeHistoryProvider';
 
 class Home extends Component {
+    constructor(){
+        super()
+        this.state = {
+
+        }
+    }
+
+    componentDidMount(){
+        this.props.getTrades(this.props.pullAllTradeData)
+    }
+
     render(){
-        console.log(this.props.sampleData)
         return(
             <div className='home-page-wrapper'>
                 <Navbar />
@@ -26,4 +37,4 @@ class Home extends Component {
     }
 }
 
-export default withTradeData(Home)
+export default withTradeHistory(withTradeData(Home))

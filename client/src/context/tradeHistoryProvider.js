@@ -33,17 +33,18 @@ class TradeHistoryProvider extends Component {
         // })
     }
 
-    getTrades = () => {
+    getTrades = (callback) => {
         axios.get(`/trades`).then(response => {
             let data = response.data
-            data.forEach(element => {
-                if(element.Action === "Buy" || element.Action === "Sell"){
-                    this.setState( prevState => ({
-                        trades: [...prevState.trades, element]
-                    }))
+            let allTrades  = []
+
+            data.forEach(trade => {
+                if(trade.Action === "Buy" || trade.Action === "Sell"){
+                    allTrades.push(trade)
                 }
             });
-            this.calculatePairs()
+            this.setState({ trades: allTrades } , () => callback(this.state.trades))
+            //this.calculatePairs()
         })
     }
 

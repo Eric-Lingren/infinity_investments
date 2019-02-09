@@ -18,23 +18,9 @@ class pairsTradeQuantityChart extends Component {
         
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     if (nextProps.symbolsTradesCount.length > 5){
-    //         this.drawPairsTradeQuantityChart()
-    //     }
-    // }
-
     componentWillUnmount(){
         this.props.resetChartToDefault()
     }
-
-    // shouldComponentUpdate(nextProps){
-    //     if(nextProps.symbolsTradesCount > 0){
-    //         return true
-    //     } else {
-    //         return false
-    //     }
-    // }
 
     drawPairsTradeQuantityChart = () => {
         const node = this.node
