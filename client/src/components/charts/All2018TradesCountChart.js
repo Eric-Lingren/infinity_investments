@@ -32,8 +32,8 @@ class All2018TradesCountChart extends Component {
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 400]).range([1, 120])
-        var radiusScale2 = d3.scaleSqrt().domain([1, 350]).range([1, 120]) 
+        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 80])
+        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 80]) 
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))

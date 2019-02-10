@@ -50,24 +50,14 @@ class TradeHistoryProvider extends Component {
     getAll2019Trades = () => {
         let allTrades = this.state.trades
         let all2019Trades = []
-        let all2018Trades = []
-        let all2017Trades = []
 
         allTrades.forEach(trade => {
             if(trade.CloseDate.includes('2019')){
                 all2019Trades.push(trade)
-            } else if(trade.CloseDate.includes('2018')){
-                all2018Trades.push(trade)
-            } else if(trade.CloseDate.includes('2017')){
-                all2017Trades.push(trade)
             }
         })
 
-        this.setState({
-            all2019Trades: all2019Trades,
-            all2018Trades: all2018Trades,
-            all2017Trades: all2017Trades,
-        })
+        this.setState({ all2019Trades: all2019Trades })
     }
 
     getAll2018Trades = () => {
@@ -81,6 +71,19 @@ class TradeHistoryProvider extends Component {
         })
 
         this.setState({ all2018Trades: all2018Trades })
+    }
+
+    getAll2017Trades = () => {
+        let allTrades = this.state.trades
+        let all2017Trades = []
+
+        allTrades.forEach(trade => {
+            if(trade.CloseDate.includes('2017')){
+                all2017Trades.push(trade)
+            }
+        })
+
+        this.setState({ all2017Trades: all2017Trades })
     }
 
     calculatePairs = () => {
@@ -131,6 +134,7 @@ class TradeHistoryProvider extends Component {
                     all2019Trades: this.state.all2019Trades,
                     getAll2018Trades: this.getAll2018Trades,
                     all2018Trades: this.state.all2018Trades,
+                    getAll2017Trades: this.getAll2017Trades,
                     all2017Trades: this.state.all2017Trades,
 
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
