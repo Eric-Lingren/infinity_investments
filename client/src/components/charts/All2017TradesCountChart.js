@@ -27,15 +27,15 @@ class All2017TradesCountChart extends Component {
         let myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
-        let height = window.innerHeight - 50;
+        let height = ((window.innerHeight / 3) - 50);
 
         let chart = d3.select(node)
             .attr('height', height)
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 80])
-        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 80])
+        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 60])
+        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 60])
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
@@ -103,8 +103,9 @@ class All2017TradesCountChart extends Component {
     render(){
         return(
             <div className='chart-wrapper'>
+                
                 <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
-                <Growth2017Chart />
+                
             </div>
         )
     }

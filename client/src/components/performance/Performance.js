@@ -10,6 +10,7 @@ import All2017TradesCountChart from '../charts/All2017TradesCountChart';
 import RightArrow from './right-arrow-blue.svg';
 import LeftArrow from './left-arrow-blue.svg';
 import TweenLite from 'gsap';
+import Growth2017Charts from '../charts/Growth2017Charts';
 
 class Performance extends Component {
     constructor(props){
@@ -87,7 +88,10 @@ class Performance extends Component {
                     {/* { !this.props.showBubbleChartCurrencyQuantity ? <PairsTradeQuantityChart />   : null } */}
                     { this.state.whichChartToShow === 'All2019TradesCountChart' ? <All2019TradesCountChart /> : null }    
                     { this.state.whichChartToShow === 'All2018TradesCountChart' ? <All2018TradesCountChart /> : null }    
-                    { this.state.whichChartToShow === 'All2017TradesCountChart' ? <All2017TradesCountChart /> : null }    
+                    { this.state.whichChartToShow === 'All2017TradesCountChart' ?   <div className='someWrapper'>
+                                                                                        <All2017TradesCountChart /> 
+                                                                                        <Growth2017Charts /> 
+                                                                                    </div> : null }    
                         
                     </div>
                 </div>

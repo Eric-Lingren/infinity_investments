@@ -93,60 +93,20 @@ class TradeHistoryProvider extends Component {
         let cumulativeGains = 0
 
         all2017Trades.forEach(trade => { 
-            let closedDateString = trade.CloseDate
-            let slicedDate = closedDateString.split(' ')
-            let correctDateFormat = slicedDate[0]
-            //console.log(typeof correctDateFormat)
             cumulativeGains += trade.Gain
             let myObjectPair = {}
             myObjectPair['y'] = cumulativeGains
-            //console.log(myObjectPair)
-            //console.log(myObject)
-            //let correctObjectFormat = {correctDateFormat  : trade.Gain}
-            //console.log(correctDateFormat)
             dailyTradesArr.push(myObjectPair) 
         })
-
-        //console.log(dailyTradesArr)
         this.setState({daily2017Gains: dailyTradesArr})
-        // let daysCombinedArray = [{'date': "12/27/2017", 'gain': 0}]
-
-        // dailyTradesArr.forEach(trade => {
-        //     //console.log(trade)
-        //     daysCombinedArray.forEach(day => {
-        //         if(day.date !== trade.date){
-        //             daysCombinedArray.push(trade)
-        //         }
-        //     })
-        // })
-
-        // console.log(daysCombinedArray)
 
 
         let countDailyGain = dailyTradesArr.reduce(function(r, e) {
-            // let myKeysArray = Object.keys(e)
-            // let myKey = myKeysArray[0]
-            // let myValuesArray = Object.values(e)
-            // let myValue = myValuesArray[0]
-            // console.log(e)
-            // console.log(myKey[0])
-            // console.log(typeof(myKey[0]))
-
-            // if(!r[myKey]) r[myKey] =  myValue
-            // else r[e.date] += e.gain
-            // return r;
-
             if(!r[e.date]) r[e.date] =  e.gain
             else r[e.date] += e.gain
-            //console.log(r)
             return r;
             
         }, {})
-
-        //console.log(countDailyGain)
-
-
-
         //this.setState({daily2017Gains: countDailyGain})
         
     }

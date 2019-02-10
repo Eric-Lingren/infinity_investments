@@ -7,48 +7,23 @@ class Growth2017Chart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            daily2017Growth: [],
-            testData: [ {'y': 0.1},
-                        {'y': 0.2},
-                        {'y': 0.3},
-                        {'y': 0.2},
-                        {'y': 0.4},
-                        {'y': 0.5},
-                        {'y': 0.1},
-                        {'y': 0.2},
-                        {'y': 0.3},
-                        {'y': 0.2},
-                        {'y': 0.4},
-                        {'y': 0.5},
-                    ]
+            daily2017Growth: []
         }
     }
     
     componentDidMount(){
-        
-        
+
     }
 
     componentWillReceiveProps(nextProps){
-        // let objectHasKeysTest = Object.keys(nextProps.daily2017Gains)
-
-        // if(objectHasKeysTest){
-        //     this.setState({daily2017Growth: nextProps.daily2017Gains}, () => 
-        //         this.draw2017GrowthChart()
-        //         //console.log(this.state.daily2017Growth)
-        //     )
-        // }
         let total2017Growth = nextProps.daily2017Gains 
         if (total2017Growth.length > 0){
-            //console.log(total2017Growth)
             this.setState({daily2017Growth: total2017Growth} , () => this.draw2017GrowthChart())
         }
-        
     }
 
     draw2017GrowthChart = () => {
-        let myData = this.state.daily2017Growth
-        // console.log(this.props.daily2017Gains)
+        let my2017GrowthData = this.state.daily2017Growth
         
         // console.log('chart rendered')
         // const node = this.node
@@ -58,12 +33,11 @@ class Growth2017Chart extends Component {
 
         // 2. Use the margin convention practice 
         var margin = {top: 50, right: 50, bottom: 50, left: 50}
-        , width = window.innerWidth - margin.left - margin.right // Use the window's width 
-        , height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
+        , width = ((window.innerWidth -200) - margin.left - margin.right) // Use the window's width 
+        , height = ((window.innerHeight  / 3) - 50); // Use the window's height
 
         // The number of datapoints
-        // var n = 21;
-        let n = myData.length
+        let n = my2017GrowthData.length
 
         // 5. X scale will use the index of our data
         var xScale = d3.scaleLinear()
@@ -73,7 +47,7 @@ class Growth2017Chart extends Component {
         // 6. Y scale will use the randomly generate number 
         var yScale = d3.scaleLinear()
             .domain([0, 10]) // input 
-            .range([height, 0]); // output 
+            .range([height, 0]); // output
 
         // 7. d3's line generator
         var line = d3.line()
@@ -81,10 +55,7 @@ class Growth2017Chart extends Component {
             .y(function(d) { return yScale(d.y); }) // set the y values for the line generator 
             .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-        // 8. An array of objects of length N. Each object has key -> value pair, the key being "y" and the value is a random number
-        // var dataset = d3.testData.map(function(d) { return {"y": d3.randomUniform(1)() } })
-        var dataset = myData
-        // var dataset = myData
+        var dataset = my2017GrowthData
 
         // 1. Add the SVG to the page and employ #2
         var svg = d3.select("body").append("svg")
@@ -158,9 +129,8 @@ class Growth2017Chart extends Component {
     render(){
         return(
             <div className='chart-wrapper'>
-            <h1>2017 Growth Chart</h1>
-                <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
-            </div>
+                {/* <svg className='chart-con' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg> */}
+            </div> 
         )
     }
 }
