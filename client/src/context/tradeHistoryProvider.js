@@ -70,6 +70,19 @@ class TradeHistoryProvider extends Component {
         })
     }
 
+    getAll2018Trades = () => {
+        let allTrades = this.state.trades
+        let all2018Trades = []
+
+        allTrades.forEach(trade => {
+            if(trade.CloseDate.includes('2018')){
+                all2018Trades.push(trade)
+            }
+        })
+
+        this.setState({ all2018Trades: all2018Trades })
+    }
+
     calculatePairs = () => {
         let allTrades = this.state.trades;
         let symbolsTradedArr = []
@@ -116,6 +129,7 @@ class TradeHistoryProvider extends Component {
                     symbolsTradesCount: this.state.symbolsTradesCount,
                     getAll2019Trades: this.getAll2019Trades,
                     all2019Trades: this.state.all2019Trades,
+                    getAll2018Trades: this.getAll2018Trades,
                     all2018Trades: this.state.all2018Trades,
                     all2017Trades: this.state.all2017Trades,
 

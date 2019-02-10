@@ -5,6 +5,7 @@ import './performance.css';
 import PairsTradeQuantityChart from '../pairsTradeQuantityChart/pairsTradeQuantityChart';
 import TotalTradeQuantityChart from '../totalTradeQuantityChart/totalTradeQuantityChart';
 import All2019TradesCountChart from '../charts/All2019TradesCountChart';
+import All2018TradesCountChart from '../charts/All2018TradesCountChart';
 import RightArrow from './right-arrow-blue.svg';
 import LeftArrow from './left-arrow-blue.svg';
 import TweenLite from 'gsap';
@@ -84,6 +85,7 @@ class Performance extends Component {
                     { this.state.whichChartToShow === 'TotalTradeQuantityChart' ? <TotalTradeQuantityChart /> : null }
                     {/* { !this.props.showBubbleChartCurrencyQuantity ? <PairsTradeQuantityChart />   : null } */}
                     { this.state.whichChartToShow === 'All2019TradesCountChart' ? <All2019TradesCountChart /> : null }    
+                    { this.state.whichChartToShow === 'All2018TradesCountChart' ? <All2018TradesCountChart /> : null }    
                         
                     </div>
                 </div>
