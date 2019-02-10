@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
-import './totalTradeQuantityChart.css';
 
-class TotalTradeQuantityChart extends Component {
+class All2019TradesCountChart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            totalTradesTaken: [0]
+            total2019TradesTaken: [0]
         }
     }
     
     componentDidMount(){
-        this.props.getAllTrades()
+        this.props.getAll2019Trades()
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.trades.length > 0){
-            this.setState({totalTradesTaken: [nextProps.trades.length]}
+        if(nextProps.all2019Trades.length > 0){
+            this.setState({total2019TradesTaken: [nextProps.all2019Trades.length]}
             , () => this.drawTotalTradeQuantityChart())
         }
     }
@@ -33,8 +32,8 @@ class TotalTradeQuantityChart extends Component {
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 70])
-        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 70]) 
+        var radiusScale = d3.scaleSqrt().domain([1, 50]).range([1, 120])
+        var radiusScale2 = d3.scaleSqrt().domain([1, 40]).range([1, 120]) 
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
@@ -44,7 +43,7 @@ class TotalTradeQuantityChart extends Component {
             }))
 
         let circles = chart.selectAll('circle')
-            .data(this.state.totalTradesTaken)
+            .data(this.state.total2019TradesTaken)
             .enter().append('circle')
             .attr('r', function(d){
                 return radiusScale(d)
@@ -68,12 +67,12 @@ class TotalTradeQuantityChart extends Component {
             })
 
         var text = chart.selectAll("text")
-            .data(this.state.totalTradesTaken)
+            .data(this.state.total2019TradesTaken)
             .enter()
             .append("text");
 
         var textLabels = text
-            .text( function (d) {return `Total Trades: ${d}`})
+            .text( function (d) {return `2019 Trades: ${d}`})
             .attr("font-family", "sans-serif")
             .attr("font-size", "25px")
             .attr("font-weight", "bold")
@@ -108,4 +107,4 @@ class TotalTradeQuantityChart extends Component {
     }
 }
 
-export default withTradeHistory(TotalTradeQuantityChart)
+export default withTradeHistory(All2019TradesCountChart)

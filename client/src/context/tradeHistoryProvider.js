@@ -13,6 +13,9 @@ class TradeHistoryProvider extends Component {
             demoAccountId: '',
             trades: [],
             symbolsTradesCount: [],
+            all2019Trades: [],
+            all2018Trades: [],
+            all2017Trades: [],
             showBubbleChartTotalTrades: true,
             showBubbleChartCurrencyQuantity: false,
         }
@@ -29,7 +32,7 @@ class TradeHistoryProvider extends Component {
         // })
     }
 
-    getTrades = () => {
+    getAllTrades = () => {
         axios.get(`/trades`).then(response => {
             let data = response.data
             let allTrades  = []
@@ -44,10 +47,33 @@ class TradeHistoryProvider extends Component {
         })
     }
 
+    getAll2019Trades = () => {
+        let allTrades = this.state.trades
+        let all2019Trades = []
+        let all2018Trades = []
+        let all2017Trades = []
+
+        allTrades.forEach(trade => {
+            if(trade.CloseDate.includes('2019')){
+                all2019Trades.push(trade)
+            } else if(trade.CloseDate.includes('2018')){
+                all2018Trades.push(trade)
+            } else if(trade.CloseDate.includes('2017')){
+                all2017Trades.push(trade)
+            }
+        })
+
+        this.setState({
+            all2019Trades: all2019Trades,
+            all2018Trades: all2018Trades,
+            all2017Trades: all2017Trades,
+        })
+    }
+
     calculatePairs = () => {
         let allTrades = this.state.trades;
         let symbolsTradedArr = []
-
+        
         allTrades.forEach(trade => { symbolsTradedArr.push(trade.Symbol) })
 
         let countTotals = symbolsTradedArr.reduce(function(r, e) {
@@ -55,7 +81,7 @@ class TradeHistoryProvider extends Component {
             else r[e].total += 1
             return r;
         }, {})
-        
+
         let pairsQuantityResult = Object.keys(countTotals).map(e => countTotals[e])
 
         this.setState({ symbolsTradesCount: pairsQuantityResult })
@@ -85,10 +111,14 @@ class TradeHistoryProvider extends Component {
                     establishedSession: this.state.establishedSession,
                     accounts: this.state.accounts,
                     trades: this.state.trades,
-                    getTrades: this.getTrades,
+                    getAllTrades: this.getAllTrades,
                     calculatePairs: this.calculatePairs,
-
                     symbolsTradesCount: this.state.symbolsTradesCount,
+                    getAll2019Trades: this.getAll2019Trades,
+                    all2019Trades: this.state.all2019Trades,
+                    all2018Trades: this.state.all2018Trades,
+                    all2017Trades: this.state.all2017Trades,
+
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
                     toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,

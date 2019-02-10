@@ -4,6 +4,7 @@ import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import './performance.css';
 import PairsTradeQuantityChart from '../pairsTradeQuantityChart/pairsTradeQuantityChart';
 import TotalTradeQuantityChart from '../totalTradeQuantityChart/totalTradeQuantityChart';
+import All2019TradesCountChart from '../charts/All2019TradesCountChart';
 import RightArrow from './right-arrow-blue.svg';
 import LeftArrow from './left-arrow-blue.svg';
 import TweenLite from 'gsap';
@@ -13,6 +14,7 @@ class Performance extends Component {
         super(props)
         this.state = {
             menuIsClosed: true,
+            whichChartToShow: 'TotalTradeQuantityChart',
         }
     }
     
@@ -40,8 +42,22 @@ class Performance extends Component {
         }
     }
 
-    resetBubbleChartstoStart = () => {
-        this.props.resetChartToDefault()
+    resetBubbleChartstoStart = (e) => {
+        //this.props.resetChartToDefault()
+
+        switch (e.target.id){
+            case '2019Totals':
+                this.setState({whichChartToShow: 'All2019TradesCountChart'})
+            break;
+            case '2018Totals':
+                this.setState({whichChartToShow: 'All2018TradesCountChart'})
+            break;
+            case '2017Totals':
+                this.setState({whichChartToShow: 'All2017TradesCountChart'})
+            break;
+            default: 
+                this.setState({whichChartToShow: 'TotalTradeQuantityChart'})
+        }
     }
     
     render(){
@@ -50,10 +66,10 @@ class Performance extends Component {
                 <Navbar />
                 <div className='page-wrapper'>
                     <div className='filter-options-container' id='sideMenu'>
-                        <button className='reset-data-button' onClick={this.resetBubbleChartstoStart}>Totals</button>
-                        <button className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2017</button>
-                        <button className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2018</button>
-                        <button className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2019</button>
+                        <button id='allTotals' className='reset-data-button' onClick={this.resetBubbleChartstoStart}>Totals</button>
+                        <button id='2019Totals' className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2019</button>
+                        <button id='2018Totals' className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2018</button>
+                        <button id='2017Totals' className='reset-data-button' onClick={this.resetBubbleChartstoStart}>2017</button>
                     </div>
                     <div className='menu-with-arrow' id='arrowMenu'>
                         {
@@ -65,12 +81,10 @@ class Performance extends Component {
                         } 
                     </div>
                     <div className='chart-wrapper' id='chartWrapper'>
-                        { this.props.showBubbleChartCurrencyQuantity 
-                        ? 
-                            <PairsTradeQuantityChart /> 
-                        :
-                            <TotalTradeQuantityChart /> 
-                        } 
+                    { this.state.whichChartToShow === 'TotalTradeQuantityChart' ? <TotalTradeQuantityChart /> : null }
+                    {/* { !this.props.showBubbleChartCurrencyQuantity ? <PairsTradeQuantityChart />   : null } */}
+                    { this.state.whichChartToShow === 'All2019TradesCountChart' ? <All2019TradesCountChart /> : null }    
+                        
                     </div>
                 </div>
             </div>
