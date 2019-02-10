@@ -16,6 +16,7 @@ class All2019TradesCountChart extends Component {
 
     componentWillReceiveProps(nextProps){
         if(nextProps.all2019Trades.length > 0){
+
             this.setState({total2019TradesTaken: [nextProps.all2019Trades.length]}
             , () => this.drawTotalTradeQuantityChart())
         }

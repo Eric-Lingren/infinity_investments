@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
-import Growth2017Chart from './Growth2017Charts'
 
-class All2017TradesCountChart extends Component {
+class Growth2017Chart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            total2017TradesTaken: [0]
+            daily2017Growth: {}
         }
     }
     
     componentDidMount(){
-        this.props.getAll2017Trades()
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.all2017Trades.length > 0)
+        let objectKeyTest = Object.keys(nextProps.daily2017Gains)
 
-            this.setState({total2017TradesTaken: [nextProps.all2017Trades.length]}
-            , () => this.drawTotalTradeQuantityChart())
+        if(objectKeyTest){
+            this.setState({daily2017Growth: nextProps.daily2017Gains}
+            , () => this.draw2017GrowthChart())
+        }
     }
 
-    drawTotalTradeQuantityChart = () => {
-        
+    draw2017GrowthChart = () => {
+        console.log('RENDER CHART')
+        console.log(this.state.daily2017Growth)
         let myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
@@ -35,7 +36,7 @@ class All2017TradesCountChart extends Component {
             .attr('transform', 'translate(0,0)')
 
         var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 80])
-        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 80])
+        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 80]) 
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
@@ -45,7 +46,7 @@ class All2017TradesCountChart extends Component {
             }))
 
         let circles = chart.selectAll('circle')
-            .data(this.state.total2017TradesTaken)
+            .data(this.state.total2019TradesTaken)
             .enter().append('circle')
             .attr('r', function(d){
                 return radiusScale(d)
@@ -69,12 +70,12 @@ class All2017TradesCountChart extends Component {
             })
 
         var text = chart.selectAll("text")
-            .data(this.state.total2017TradesTaken)
+            .data(this.state.total2019TradesTaken)
             .enter()
             .append("text");
 
         var textLabels = text
-            .text( function (d) {return `2017 Trades: ${d}`})
+            .text( function (d) {return `2019 Trades: ${d}`})
             .attr("font-family", "sans-serif")
             .attr("font-size", "25px")
             .attr("font-weight", "bold")
@@ -103,11 +104,11 @@ class All2017TradesCountChart extends Component {
     render(){
         return(
             <div className='chart-wrapper'>
+            <h1>2017 Growth Chart</h1>
                 <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
-                <Growth2017Chart />
             </div>
         )
     }
 }
 
-export default withTradeHistory(All2017TradesCountChart)
+export default withTradeHistory(Growth2017Chart)

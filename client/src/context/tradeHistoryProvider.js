@@ -16,6 +16,7 @@ class TradeHistoryProvider extends Component {
             all2019Trades: [],
             all2018Trades: [],
             all2017Trades: [],
+            daily2017Gains: {},
             showBubbleChartTotalTrades: true,
             showBubbleChartCurrencyQuantity: false,
         }
@@ -83,7 +84,27 @@ class TradeHistoryProvider extends Component {
             }
         })
 
-        this.setState({ all2017Trades: all2017Trades })
+        this.setState({ all2017Trades: all2017Trades } , () => this.get2017Growth() )
+    }
+
+    get2017Growth = () => {
+        let all2017Trades = this.state.all2017Trades
+        let dailyTradesArr = []
+        
+        all2017Trades.forEach(trade => { 
+            let closedDateString = trade.CloseDate
+            let slicedDate = closedDateString.split(' ')
+            dailyTradesArr.push({ closeDate: slicedDate[0] ,  gain: trade.Gain}) 
+        })
+
+        let countDailyGain = dailyTradesArr.reduce(function(r, e) {
+            if(!r[e.closeDate]) r[e.closeDate] =  e.gain
+            else r[e.closeDate] += e.gain
+            return r;
+        }, {})
+
+        this.setState({daily2017Gains: countDailyGain})
+        
     }
 
     calculatePairs = () => {
@@ -136,6 +157,8 @@ class TradeHistoryProvider extends Component {
                     all2018Trades: this.state.all2018Trades,
                     getAll2017Trades: this.getAll2017Trades,
                     all2017Trades: this.state.all2017Trades,
+                    get2017Growth: this.get2017Growth,
+                    daily2017Gains: this.state.daily2017Gains,
 
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
