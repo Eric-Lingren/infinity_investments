@@ -1,113 +1,114 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
+import './pairsCurrencyQuantity.css';
 
-class All2017TradesCountChart extends Component {
+class Pairs2018QuantityChart extends Component {
     constructor(props){
         super(props)
         this.state = {
-            total2017TradesTaken: [0]
+            pageHasRendered: false,
         }
     }
     
     componentDidMount(){
-        this.props.getAll2017Trades()
+        this.props.calculate2018Pairs()
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.all2017Trades.length > 0)
-
-            this.setState({total2017TradesTaken: [nextProps.all2017Trades.length]}
-            , () => this.drawTotalTradeQuantityChart())
+    componentWillUnmount(){
+        //this.props.resetChartToDefault()
     }
 
-    drawTotalTradeQuantityChart = () => {
-        
-        let myProps =  this.props
+    drawPairsTradeQuantityChart = () => {
         const node = this.node
         let width = window.innerWidth;
-        let height = ((window.innerHeight / 2) - 50);
+        let height = window.innerHeight -50;
 
         let chart = d3.select(node)
             .attr('height', height)
             .attr('width', width)
             .attr('transform', 'translate(0,0)')
 
-        var radiusScale = d3.scaleSqrt().domain([1, 100]).range([20, 60])
-        var radiusScale2 = d3.scaleSqrt().domain([1, 80]).range([20, 60])
+        var radiusScale = d3.scaleSqrt().domain([1, 200]).range([20, 100])
 
         let simulation = d3.forceSimulation()
             .force('x', d3.forceX(width / 2).strength(0.05))
             .force('y', d3.forceY(height / 2).strength(0.05))
             .force('collide', d3.forceCollide(function(d){
-                return radiusScale(d.total)
+                return radiusScale((d.total ) + 5 )
             }))
 
         let circles = chart.selectAll('circle')
-            .data(this.state.total2017TradesTaken)
+            .data(this.props.symbols2018TradesCount)
             .enter().append('circle')
+            .attr('class', '.tradePairs')
             .attr('r', function(d){
-                return radiusScale(d)
+                return radiusScale(d.total)
             })
             .style("fill",function() {
-                return "hsl(" + Math.random() * 360 + ",60%,50%)";
+                return "hsl(" + Math.random() * 360 + ",50%,60%)";
                 })
             .on('click', function(d){
-                myProps.setWhichChartToShow('2017TradesPairsBubbleChart')
+                console.log(d)
             })
             .on('mouseover', function(d){
                 d3.select(this)
                 .transition()
-                .attr('r', radiusScale2);
+                .attr('r', function(d){
+                    return radiusScale(d.total * 2)
+                })
                 d3.select(this).style("cursor", "pointer"); 
+
             })
             .on('mouseout', function(d){
                 d3.select(this)
                 .transition()
-                .attr('r', radiusScale);
+                .attr('r', function(d){
+                    return radiusScale(d.total )
+                })
             })
 
         var text = chart.selectAll("text")
-            .data(this.state.total2017TradesTaken)
+            .data(this.props.symbols2018TradesCount)
             .enter()
-            .append("text");
+            .append("text")
 
         var textLabels = text
-            .text( function (d) {return `2017 Trades: ${d}`})
+            .text( function (d) { return `${d.symbol}: ${d.total}`; })
             .attr("font-family", "sans-serif")
-            .attr("font-size", "25px")
+            .attr("font-size", "20px")
             .attr("font-weight", "bold")
+            .attr('font-size', 15)
 
-        simulation.nodes(this.props.symbolsTradesCount)
+        simulation.nodes(this.props.symbols2018TradesCount)
             .on('tick', ticked)
 
         function ticked(){
             circles
                 .attr('cx', function(d){
-                    return width / 2
+                    return d.x
                 })
                 .attr('cy', function(d){
-                    return height / 2
+                    return d.y
                 })
             textLabels
                 .attr('x', function(d){
-                    return ((width / 2) - 100)
+                    return d.x - 40
                 })
                 .attr('y', function(d){
-                    return  ((height / 2) + 12)
+                    return d.y + 5
                 })
         }
     }
 
     render(){
+        this.drawPairsTradeQuantityChart()
         return(
-            <div className='chart-wrapper'>
-                
+            <div>
                 <svg className='chart-container' ref={node => this.node = node} style={{width: window.innerWidth -55}}></svg>
-                
             </div>
         )
     }
 }
 
-export default withTradeHistory(All2017TradesCountChart)
+export default withTradeHistory(Pairs2018QuantityChart)

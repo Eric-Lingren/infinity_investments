@@ -14,6 +14,9 @@ import Growth2017Charts from '../charts/Growth2017Charts';
 import Growth2018Chart from '../charts/Growth2018Chart';
 import Growth2019Chart from '../charts/Growth2019Chart';
 import GrowthAllTradesChart from '../charts/GrowthAllTradesChart';
+import Pairs2019QuantityChart from '../charts/Pairs2019QuantityChart';
+import Pairs2018QuantityChart from '../charts/Pairs2018QuantityChart';
+import Pairs2017QuantityChart from '../charts/Pairs2017QuantityChart';
 
 class Performance extends Component {
     constructor(props){
@@ -29,10 +32,6 @@ class Performance extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        // console.log(this.state.whichChartToShow)
-        // console.log(nextProps.whichBubbleChartToShow)
-        //this.setState({whichChartToShow: nextProps.whichChartToShow}, () => console.log(this.state.whichChartToShow))
-        // console.log(this.state.whichChartToShow)
         
     }
 
@@ -57,7 +56,6 @@ class Performance extends Component {
     }
 
     changeChart = (e) => {
-        // e.target.className = 'reset-data-button'
         document.getElementById('allTotals').className = 'reset-data-button'
         document.getElementById('2019Totals').className = 'reset-data-button'
         document.getElementById('2018Totals').className = 'reset-data-button'
@@ -67,22 +65,18 @@ class Performance extends Component {
             case '2019Totals':
                 e.target.className = 'reset-data-selected'
                 this.props.setWhichChartToShow('All2019TradesCountChart')
-                //this.setState({whichChartToShow: 'All2019TradesCountChart'})
             break;
             case '2018Totals':
                 e.target.className = 'reset-data-selected'
                 this.props.setWhichChartToShow('All2018TradesCountChart')
-                //this.setState({whichChartToShow: 'All2018TradesCountChart'})
             break;
             case '2017Totals':
                 e.target.className = 'reset-data-selected'
                 this.props.setWhichChartToShow('All2017TradesCountChart')
-                //this.setState({whichChartToShow: 'All2017TradesCountChart'})
             break;
             default: 
                 e.target.className = 'reset-data-selected'
                 this.props.setWhichChartToShow('TotalTradeQuantityChart')
-                //this.setState({whichChartToShow: 'TotalTradeQuantityChart'})
         }
     }
     
@@ -111,7 +105,6 @@ class Performance extends Component {
                                                                                         <GrowthAllTradesChart /> 
                                                                                         <TotalTradeQuantityChart />
                                                                                     </div> : null }
-                    {/* { !this.props.showBubbleChartCurrencyQuantity ? <PairsTradeQuantityChart />   : null } */}
                     { this.props.whichChartToShow === 'All2019TradesCountChart' ?   <div className='someWrapper'>
                                                                                         <Growth2019Chart />          
                                                                                         <All2019TradesCountChart /> 
@@ -127,7 +120,16 @@ class Performance extends Component {
                                                                                     </div> : null }    
                     { this.props.whichChartToShow === 'allTradesPairsBubbleChart' ? <div className='someWrapper'>
                                                                                         <PairsTradeQuantityChart />
-                                                                                    </div> : null }                                                                 
+                                                                                    </div> : null }                       
+                    { this.props.whichChartToShow === '2019TradesPairsBubbleChart' ? <div className='someWrapper'>
+                                                                                        <Pairs2019QuantityChart />
+                                                                                    </div> : null }                          
+                    { this.props.whichChartToShow === '2018TradesPairsBubbleChart' ? <div className='someWrapper'>
+                                                                                        <Pairs2018QuantityChart />
+                                                                                    </div> : null }
+                    { this.props.whichChartToShow === '2017TradesPairsBubbleChart' ? <div className='someWrapper'>
+                                                                                        <Pairs2017QuantityChart />
+                                                                                    </div> : null }            
                         
                     </div>
                 </div>

@@ -12,7 +12,7 @@ class pairsTradeQuantityChart extends Component {
     }
     
     componentDidMount(){
-        this.props.calculatePairs()
+        this.props.calculateAllPairs()
     }
 
     componentWillUnmount(){

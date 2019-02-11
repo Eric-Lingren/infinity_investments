@@ -13,6 +13,9 @@ class TradeHistoryProvider extends Component {
             demoAccountId: '',
             trades: [],
             symbolsTradesCount: [],
+            symbols2019TradesCount: [],
+            symbols2018TradesCount: [],
+            symbols2017TradesCount: [],
             all2019Trades: [],
             all2018Trades: [],
             all2017Trades: [],
@@ -153,7 +156,7 @@ class TradeHistoryProvider extends Component {
         // //this.setState({daily2017Gains: countDailyGain})
     }
 
-    calculatePairs = () => {
+    calculateAllPairs = () => {
         let allTrades = this.state.trades;
         let symbolsTradedArr = []
         
@@ -168,6 +171,57 @@ class TradeHistoryProvider extends Component {
         let pairsQuantityResult = Object.keys(countTotals).map(e => countTotals[e])
 
         this.setState({ symbolsTradesCount: pairsQuantityResult })
+    }
+
+    calculate2019Pairs = () => {
+        let all2019Trades = this.state.all2019Trades
+        let symbolsTradedArr = []
+        
+        all2019Trades.forEach(trade => { symbolsTradedArr.push(trade.Symbol) })
+
+        let countTotals = symbolsTradedArr.reduce(function(r, e) {
+            if(!r[e]) r[e] = {'symbol': e, 'total': 1}
+            else r[e].total += 1
+            return r;
+        }, {})
+
+        let pairsQuantityResult = Object.keys(countTotals).map(e => countTotals[e])
+
+        this.setState({ symbols2019TradesCount: pairsQuantityResult })
+    }
+
+    calculate2018Pairs = () => {
+        let all2018Trades = this.state.all2018Trades
+        let symbolsTradedArr = []
+        
+        all2018Trades.forEach(trade => { symbolsTradedArr.push(trade.Symbol) })
+
+        let countTotals = symbolsTradedArr.reduce(function(r, e) {
+            if(!r[e]) r[e] = {'symbol': e, 'total': 1}
+            else r[e].total += 1
+            return r;
+        }, {})
+
+        let pairsQuantityResult = Object.keys(countTotals).map(e => countTotals[e])
+
+        this.setState({ symbols2018TradesCount: pairsQuantityResult })
+    }
+
+    calculate2017Pairs = () => {
+        let all2017Trades = this.state.all2017Trades
+        let symbolsTradedArr = []
+        
+        all2017Trades.forEach(trade => { symbolsTradedArr.push(trade.Symbol) })
+
+        let countTotals = symbolsTradedArr.reduce(function(r, e) {
+            if(!r[e]) r[e] = {'symbol': e, 'total': 1}
+            else r[e].total += 1
+            return r;
+        }, {})
+
+        let pairsQuantityResult = Object.keys(countTotals).map(e => countTotals[e])
+
+        this.setState({ symbols2017TradesCount: pairsQuantityResult })
     }
 
     resetChartToDefault = () => {
@@ -193,8 +247,14 @@ class TradeHistoryProvider extends Component {
                     accounts: this.state.accounts,
                     trades: this.state.trades,
                     getAllTrades: this.getAllTrades,
-                    calculatePairs: this.calculatePairs,
+                    calculateAllPairs: this.calculateAllPairs,
                     symbolsTradesCount: this.state.symbolsTradesCount,
+                    calculate2019Pairs: this.calculate2019Pairs,
+                    symbols2019TradesCount: this.state.symbols2019TradesCount,
+                    calculate2018Pairs: this.calculate2018Pairs,
+                    symbols2018TradesCount: this.state.symbols2018TradesCount,
+                    calculate2017Pairs: this.calculate2017Pairs,
+                    symbols2017TradesCount: this.state.symbols2017TradesCount,
                     getAll2019Trades: this.getAll2019Trades,
                     all2019Trades: this.state.all2019Trades,
                     getAll2018Trades: this.getAll2018Trades,

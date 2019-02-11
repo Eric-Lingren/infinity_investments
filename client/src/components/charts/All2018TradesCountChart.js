@@ -52,7 +52,7 @@ class All2018TradesCountChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                myProps.setWhichBubbleChartToShow('2018TradesPairsBubbleChart')
+                myProps.setWhichChartToShow('2018TradesPairsBubbleChart')
             })
             .on('mouseover', function(d){
                 d3.select(this)
