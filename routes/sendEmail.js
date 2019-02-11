@@ -2,13 +2,13 @@ const express = require('express');
 const sendEmailRouter = express.Router();
 const Email = require("../models/Email");
 const nodemailer = require('nodemailer');
-const credentials = require('../config/config');
+//const credentials = require('../config/config');
 
 let transport = {
     host: 'smtp.gmail.com',
     auth: {
-        user: credentials.USER,
-        pass: credentials.PASS
+        user: process.env.USER,
+        pass: process.env.PASS
     }
 }
 
