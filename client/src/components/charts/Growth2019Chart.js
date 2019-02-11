@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
-import './Growth2017ChartStyles.css'
+import './GrowthChartStyles.css'
 
 class Growth2019Chart extends Component {
     constructor(props){
@@ -84,7 +84,7 @@ class Growth2019Chart extends Component {
             .attr("x", (window.innerWidth / 2 - 150 ) )
             .attr("y", (window.innerHeight / 2 - 10 ) )
             .attr("font-size", "18px")
-            .attr("font-weight", "bold")
+            //.attr("font-weight", "bold")
             .style("text-anchor", "middle")
             .text("Quantity of Trades Taken");
 
@@ -94,7 +94,7 @@ class Growth2019Chart extends Component {
             .attr("x",0 - (height / 2))
             .attr("dy", "1em")
             .attr("font-size", "18px")
-            .attr("font-weight", "bold")
+            //.attr("font-weight", "bold")
             .style("text-anchor", "middle")
             .text("Account Percent Growth");
 

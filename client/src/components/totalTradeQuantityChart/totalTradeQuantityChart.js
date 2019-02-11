@@ -26,7 +26,7 @@ class TotalTradeQuantityChart extends Component {
         let myProps =  this.props
         const node = this.node
         let width = window.innerWidth;
-        let height = window.innerHeight - 50;
+        let height = window.innerHeight - 250;
 
         let chart = d3.select(node)
             .attr('height', height)
