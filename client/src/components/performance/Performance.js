@@ -11,6 +11,7 @@ import RightArrow from './right-arrow-blue.svg';
 import LeftArrow from './left-arrow-blue.svg';
 import TweenLite from 'gsap';
 import Growth2017Charts from '../charts/Growth2017Charts';
+import Growth2018Chart from '../charts/Growth2018Chart';
 
 class Performance extends Component {
     constructor(props){
@@ -87,12 +88,16 @@ class Performance extends Component {
                     { this.state.whichChartToShow === 'TotalTradeQuantityChart' ? <TotalTradeQuantityChart /> : null }
                     {/* { !this.props.showBubbleChartCurrencyQuantity ? <PairsTradeQuantityChart />   : null } */}
                     { this.state.whichChartToShow === 'All2019TradesCountChart' ? <All2019TradesCountChart /> : null }    
-                    { this.state.whichChartToShow === 'All2018TradesCountChart' ? <All2018TradesCountChart /> : null }    
+                    { this.state.whichChartToShow === 'All2018TradesCountChart' ? <div className='someWrapper'>
+                                                                                        <Growth2018Chart />          
+                                                                                        <All2018TradesCountChart /> 
+                                                                                    </div> : null }    
                     { this.state.whichChartToShow === 'All2017TradesCountChart' ?   <div className='someWrapper'>
                                                                                         <Growth2017Charts /> 
                                                                                         <All2017TradesCountChart /> 
                                                                                         
                                                                                     </div> : null }    
+                                                                                    
                         
                     </div>
                 </div>

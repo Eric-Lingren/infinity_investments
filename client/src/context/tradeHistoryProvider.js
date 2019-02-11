@@ -17,6 +17,7 @@ class TradeHistoryProvider extends Component {
             all2018Trades: [],
             all2017Trades: [],
             daily2017Gains: [],
+            daily2018Gains: [],
             showBubbleChartTotalTrades: true,
             showBubbleChartCurrencyQuantity: false,
         }
@@ -71,7 +72,21 @@ class TradeHistoryProvider extends Component {
             }
         })
 
-        this.setState({ all2018Trades: all2018Trades })
+        this.setState({ all2018Trades: all2018Trades }, () => this.get2018Growth() )
+    }
+
+    get2018Growth = () => {
+        let all2018Trades = this.state.all2018Trades
+        let dailyTradesArr = []
+        let cumulativeGains = 0
+
+        all2018Trades.forEach(trade => { 
+            cumulativeGains += trade.Gain
+            let myDataObjectPair = {}
+            myDataObjectPair['y'] = cumulativeGains
+            dailyTradesArr.push(myDataObjectPair) 
+        })
+        this.setState({daily2018Gains: dailyTradesArr})
     }
 
     getAll2017Trades = () => {
@@ -100,15 +115,12 @@ class TradeHistoryProvider extends Component {
         })
         this.setState({daily2017Gains: dailyTradesArr})
 
-
-        let countDailyGain = dailyTradesArr.reduce(function(r, e) {
-            if(!r[e.date]) r[e.date] =  e.gain
-            else r[e.date] += e.gain
-            return r;
-            
-        }, {})
-        //this.setState({daily2017Gains: countDailyGain})
-        
+        // let countDailyGain = dailyTradesArr.reduce(function(r, e) {
+        //     if(!r[e.date]) r[e.date] =  e.gain
+        //     else r[e.date] += e.gain
+        //     return r;
+        // }, {})
+        // //this.setState({daily2017Gains: countDailyGain})
     }
 
     calculatePairs = () => {
@@ -163,7 +175,7 @@ class TradeHistoryProvider extends Component {
                     all2017Trades: this.state.all2017Trades,
                     get2017Growth: this.get2017Growth,
                     daily2017Gains: this.state.daily2017Gains,
-
+                    daily2018Gains: this.state.daily2018Gains,
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
                     toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
