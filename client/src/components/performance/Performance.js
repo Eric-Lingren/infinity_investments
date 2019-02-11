@@ -89,8 +89,9 @@ class Performance extends Component {
                     { this.state.whichChartToShow === 'All2019TradesCountChart' ? <All2019TradesCountChart /> : null }    
                     { this.state.whichChartToShow === 'All2018TradesCountChart' ? <All2018TradesCountChart /> : null }    
                     { this.state.whichChartToShow === 'All2017TradesCountChart' ?   <div className='someWrapper'>
-                                                                                        <All2017TradesCountChart /> 
                                                                                         <Growth2017Charts /> 
+                                                                                        <All2017TradesCountChart /> 
+                                                                                        
                                                                                     </div> : null }    
                         
                     </div>
