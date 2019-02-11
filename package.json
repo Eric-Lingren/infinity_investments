@@ -1,0 +1,33 @@
+{
+  "name": "infinity_investments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.6",
+    "morgan": "^1.9.1",
+    "nodemailer": "^5.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "engines": {
+    "node": "11.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eric-Lingren/infinity_investments.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eric-Lingren/infinity_investments/issues"
+  },
+  "homepage": "https://github.com/Eric-Lingren/infinity_investments#readme"
+}
