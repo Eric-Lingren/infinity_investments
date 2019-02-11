@@ -16,7 +16,7 @@ class pairsTradeQuantityChart extends Component {
     }
 
     componentWillUnmount(){
-        this.props.resetChartToDefault()
+        //this.props.resetChartToDefault()
     }
 
     drawPairsTradeQuantityChart = () => {

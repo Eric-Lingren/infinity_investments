@@ -20,8 +20,7 @@ class TradeHistoryProvider extends Component {
             daily2018Gains: [],
             daily2019Gains: [],
             allDailyGains: [],
-            showBubbleChartTotalTrades: true,
-            showBubbleChartCurrencyQuantity: false,
+            whichChartToShow: 'TotalTradeQuantityChart',
         }
     }
 
@@ -180,11 +179,9 @@ class TradeHistoryProvider extends Component {
         })
     }
 
-    toggleChartFromTotalTradesToCurrencyTotals = () => {
+    setWhichChartToShow = (e) => {
         this.setState({
-            showBubbleChartTotalTrades: false,
-            showBubbleChartCurrencyQuantity: true,
-            
+            whichChartToShow: e
         })
     }
 
@@ -209,10 +206,11 @@ class TradeHistoryProvider extends Component {
                     daily2018Gains: this.state.daily2018Gains,
                     daily2019Gains: this.state.daily2019Gains,
                     allDailyGains: this.state.allDailyGains,
-
-                    showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
-                    showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
-                    toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
+                    setWhichChartToShow: this.setWhichChartToShow,
+                    whichChartToShow: this.state.whichChartToShow,
+                    // showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
+                    // showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
+                    // toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
                     resetChartToDefault: this.resetChartToDefault,
                 }}>
                 { this.props.children }

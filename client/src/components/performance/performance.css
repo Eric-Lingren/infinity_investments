@@ -52,6 +52,21 @@
     color: white;
     
 }
+.reset-data-selected{
+    background-color: #3b80d1;
+    color: white;
+    text-decoration: none;
+    transition: .3s ease-in-out;
+    font-size: 15pt;
+    font-weight: 400;
+    padding: 4pt 0pt 4pt 0pt;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    border: 1px solid #3b80d1;
+    cursor: pointer;
+    width: 100px;
+    margin: 5px 20px 5px 20px;
+}
 
 @keyframes borderPulse {
     0%   {border: 3px solid #fff;}

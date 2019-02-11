@@ -53,7 +53,7 @@ class All2019TradesCountChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                myProps.toggleChartFromTotalTradesToCurrencyTotals()
+                myProps.setWhichBubbleChartToShow('2019TradesPairsBubbleChart')
             })
             .on('mouseover', function(d){
                 d3.select(this)

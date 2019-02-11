@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {withTradeHistory} from '../../context/tradeHistoryProvider';
 import * as d3 from "d3";
-import Growth2017Chart from './Growth2017Charts'
 
 class All2017TradesCountChart extends Component {
     constructor(props){
@@ -54,7 +53,7 @@ class All2017TradesCountChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                myProps.toggleChartFromTotalTradesToCurrencyTotals()
+                myProps.setWhichBubbleChartToShow('2017TradesPairsBubbleChart')
             })
             .on('mouseover', function(d){
                 d3.select(this)

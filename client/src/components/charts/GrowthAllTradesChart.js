@@ -17,7 +17,6 @@ class GrowthAllTradesChart extends Component {
     componentWillReceiveProps(nextProps){
         let allDailyGains = nextProps.allDailyGains 
         if (allDailyGains.length > 0){
-            console.log(nextProps.allDailyGains )
             this.setState({allDailyGrowth: allDailyGains} , () => this.drawTotalGrowthChart())
         }
     }

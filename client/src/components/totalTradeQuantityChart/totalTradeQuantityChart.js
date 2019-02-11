@@ -53,7 +53,7 @@ class TotalTradeQuantityChart extends Component {
                 return "hsl(" + Math.random() * 360 + ",60%,50%)";
                 })
             .on('click', function(d){
-                myProps.toggleChartFromTotalTradesToCurrencyTotals()
+                myProps.setWhichChartToShow('allTradesPairsBubbleChart')
             })
             .on('mouseover', function(d){
                 d3.select(this)
