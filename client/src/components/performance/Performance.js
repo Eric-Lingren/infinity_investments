@@ -13,6 +13,7 @@ import TweenLite from 'gsap';
 import Growth2017Charts from '../charts/Growth2017Charts';
 import Growth2018Chart from '../charts/Growth2018Chart';
 import Growth2019Chart from '../charts/Growth2019Chart';
+import GrowthAllTradesChart from '../charts/GrowthAllTradesChart';
 
 class Performance extends Component {
     constructor(props){
@@ -86,13 +87,16 @@ class Performance extends Component {
                         } 
                     </div>
                     <div className='chart-wrapper' id='chartWrapper'>
-                    { this.state.whichChartToShow === 'TotalTradeQuantityChart' ? <TotalTradeQuantityChart /> : null }
+                    { this.state.whichChartToShow === 'TotalTradeQuantityChart' ?   <div className='someWrapper'>             
+                                                                                        <GrowthAllTradesChart /> 
+                                                                                        <TotalTradeQuantityChart />
+                                                                                    </div> : null }
                     {/* { !this.props.showBubbleChartCurrencyQuantity ? <PairsTradeQuantityChart />   : null } */}
-                    { this.state.whichChartToShow === 'All2019TradesCountChart' ? <div className='someWrapper'>
+                    { this.state.whichChartToShow === 'All2019TradesCountChart' ?   <div className='someWrapper'>
                                                                                         <Growth2019Chart />          
                                                                                         <All2019TradesCountChart /> 
                                                                                     </div> : null }    
-                    { this.state.whichChartToShow === 'All2018TradesCountChart' ? <div className='someWrapper'>
+                    { this.state.whichChartToShow === 'All2018TradesCountChart' ?   <div className='someWrapper'>
                                                                                         <Growth2018Chart />          
                                                                                         <All2018TradesCountChart /> 
                                                                                     </div> : null }    

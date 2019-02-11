@@ -19,6 +19,7 @@ class TradeHistoryProvider extends Component {
             daily2017Gains: [],
             daily2018Gains: [],
             daily2019Gains: [],
+            allDailyGains: [],
             showBubbleChartTotalTrades: true,
             showBubbleChartCurrencyQuantity: false,
         }
@@ -46,8 +47,22 @@ class TradeHistoryProvider extends Component {
                 }
             });
 
-            this.setState({ trades: allTrades })
+            this.setState({ trades: allTrades }, () => this.getAllTradesGrowth() )
         })
+    }
+
+    getAllTradesGrowth = () => {
+        let allTrades = this.state.trades
+        let dailyTradesArr = []
+        let cumulativeGains = 0
+
+        allTrades.forEach(trade => { 
+            cumulativeGains += trade.Gain
+            let myDataObjectPair = {}
+            myDataObjectPair['y'] = cumulativeGains
+            dailyTradesArr.push(myDataObjectPair) 
+        })
+        this.setState({allDailyGains: dailyTradesArr})
     }
 
     getAll2019Trades = () => {
@@ -193,6 +208,8 @@ class TradeHistoryProvider extends Component {
                     daily2017Gains: this.state.daily2017Gains,
                     daily2018Gains: this.state.daily2018Gains,
                     daily2019Gains: this.state.daily2019Gains,
+                    allDailyGains: this.state.allDailyGains,
+
                     showBubbleChartTotalTrades: this.state.showBubbleChartTotalTrades,
                     showBubbleChartCurrencyQuantity: this.state.showBubbleChartCurrencyQuantity,
                     toggleChartFromTotalTradesToCurrencyTotals: this.toggleChartFromTotalTradesToCurrencyTotals,
