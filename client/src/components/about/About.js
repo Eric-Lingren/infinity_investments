@@ -88,6 +88,23 @@ class About extends Component {
         TweenLite.to( document.getElementById('section6'), 2, {opacity: 1, delay: 1.5})
         TweenLite.from( document.getElementById('section6'), 1, {x: 1000, delay: 1.5})
     }
+    
+
+    // componentDidMount(){
+    //     this.setState({ shuffledImages: Lodash(this.state.imageGallery)})
+    //     this.initSliderAnimation(elements, 1000, 0.3)
+    // }
+
+    // initSliderAnimation = (elements, xCordinate, delay) => {
+    //     let iterationDelay = 0
+    //     return elements.forEach(element => {
+    //         xCordinate = xCordinate * -1
+    //         TweenLite.to(element, 2, {opacity: 1, delay: iterationDelay})
+    //         TweenLite.from(element, 1, {x: xCordinate, delay: iterationDelay})
+    //         iterationDelay = iterationDelay + delay
+    //     })
+    // }
+
 
     showImage = (id) => {
         TweenLite.to( document.getElementById(id), 0.7, {opacity: 1, scale: 1.05})
